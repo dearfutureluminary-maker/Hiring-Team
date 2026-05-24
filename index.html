@@ -1,839 +1,562 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Dear Future Luminary - Join Our Team. We're hiring ambitious students to build something meaningful.">
-    <title>Dear Future Luminary - We're Hiring</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome for reliable social icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@200..800&display=swap');
-        
-        :root {
-            --primary: #a488f4;
-            --secondary: #facc15;
-            --dark: #1e3a8a;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DFL — FOR INSANE PEOPLE ONLY</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--P:#a488f4;--Y:#facc15;--B:#1e3a8a;--L:#e9ecef;--INK:#0a0614;--INK2:#0f0a1e}
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{background:var(--INK);color:var(--L);font-family:'Archivo',sans-serif;overflow-x:hidden;cursor:none}
 
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
+/* CURSOR */
+#cur{position:fixed;width:10px;height:10px;background:var(--Y);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .15s,height .15s;mix-blend-mode:exclusion}
+#cur2{position:fixed;width:40px;height:40px;border:1.5px solid var(--P);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .2s,height .2s,border-color .2s}
 
-        .font-serif {
-            font-family: 'Playfair Display', serif;
-        }
+/* MARQUEE */
+.mwrap{position:fixed;top:0;left:0;right:0;z-index:700;overflow:hidden;background:var(--Y);padding:.28rem 0;pointer-events:none}
+.mtrack{display:flex;gap:2.5rem;animation:marquee 20s linear infinite;width:max-content}
+.mtrack span{font-family:'Space Mono',monospace;font-size:.58rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--INK);white-space:nowrap}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
-        /* Ripple Effect */
-        .ripple {
-            position: absolute;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.6);
-            transform: scale(0);
-            animation: ripple-animation 0.6s ease-out;
-            pointer-events: none;
-        }
+/* NAV - Light Theme Override */
+nav{position:fixed;top:0;left:0;right:0;z-index:800;padding:1.4rem 2.5rem;display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(233,236,239,.2)}
+.nav-w{font-family:'Archivo Black',sans-serif;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--B)}
+.nav-t{font-family:'Space Mono',monospace;font-size:.62rem;color:var(--Y);border:1px solid var(--Y);padding:.28rem .75rem}
 
-        @keyframes ripple-animation {
-            to {
-                transform: scale(4);
-                opacity: 0;
-            }
-        }
+/* SECTIONS */
+section{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:7rem 2rem 5rem}
 
-        /* Skip to main content link */
-        .sr-only {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            padding: 0;
-            margin: -1px;
-            overflow: hidden;
-            clip: rect(0, 0, 0, 0);
-            white-space: nowrap;
-            border-width: 0;
-        }
+/* ══ S1 HERO ══ */
+#s1{background:var(--INK);justify-content:flex-end;padding-bottom:5rem}
+.h-noise{position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");opacity:.55;pointer-events:none}
+.hblob{position:absolute;border-radius:50%;filter:blur(110px);pointer-events:none}
+.hb1{width:650px;height:650px;background:var(--B);opacity:.55;top:-200px;left:-150px;animation:bf 10s ease-in-out infinite}
+.hb2{width:380px;height:380px;background:var(--P);opacity:.14;bottom:-80px;right:-80px;animation:bf 13s ease-in-out infinite reverse}
+.hb3{width:220px;height:220px;background:var(--Y);opacity:.07;top:35%;left:62%;animation:bf 8s ease-in-out infinite 1.5s}
+@keyframes bf{0%,100%{transform:scale(1) translate(0,0)}50%{transform:scale(1.07) translate(18px,-25px)}}
+.h-bgnum{position:absolute;font-family:'Archivo Black',sans-serif;font-size:clamp(16rem,32vw,38rem);line-height:1;color:transparent;-webkit-text-stroke:1px rgba(164,136,244,.06);top:50%;left:50%;transform:translate(-50%,-50%) rotate(-10deg);pointer-events:none;white-space:nowrap;z-index:0}
+.h-content{position:relative;z-index:2;width:100%;max-width:1100px}
+.h-eye{font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--P);margin-bottom:1.1rem;opacity:0;animation:fi .6s cubic-bezier(.16,1,.3,1) forwards .1s}
+.h-h1{font-family:'Archivo Black',sans-serif;font-size:clamp(4rem,12vw,13rem);line-height:.88;letter-spacing:-.03em;text-transform:uppercase;color:var(--L)}
+.h-h1 .hy{color:var(--Y)}
+.h-h1 .ho{-webkit-text-stroke:2px var(--P);color:transparent}
+.h-h1 span{display:block;opacity:0;animation:fi .7s cubic-bezier(.16,1,.3,1) forwards}
+.h-h1 span:nth-child(1){animation-delay:.2s}
+.h-h1 span:nth-child(2){animation-delay:.36s}
+.h-h1 span:nth-child(3){animation-delay:.52s}
+@keyframes fi{from{opacity:0;transform:translateY(55px) skewY(2.5deg)}to{opacity:1;transform:translateY(0) skewY(0)}}
+.h-bot{display:flex;align-items:flex-end;justify-content:space-between;gap:2rem;margin-top:2.5rem;flex-wrap:wrap}
+.h-sub{font-size:clamp(.85rem,1.4vw,1.05rem);font-style:italic;color:rgba(233,236,239,.45);max-width:360px;line-height:1.75;opacity:0;animation:fi .7s cubic-bezier(.16,1,.3,1) forwards .68s}
+.h-cta{opacity:0;animation:fi .7s cubic-bezier(.16,1,.3,1) forwards .84s}
+.btn-c{display:inline-flex;align-items:center;gap:.7rem;background:var(--Y);color:var(--INK);font-family:'Archivo Black',sans-serif;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;padding:1.1rem 2rem;border:none;cursor:none;position:relative;overflow:hidden;transition:transform .25s cubic-bezier(.34,1.56,.64,1);clip-path:polygon(0 0,calc(100% - 11px) 0,100% 11px,100% 100%,11px 100%,0 calc(100% - 11px))}
+.btn-c:hover{transform:scale(1.04) translateY(-3px)}
+.btn-c .ar{transition:transform .3s;font-size:1.05rem}
+.btn-c:hover .ar{transform:translateX(5px)}
+.s-lbl{position:absolute;right:2rem;bottom:2.5rem;font-family:'Space Mono',monospace;font-size:.52rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(164,136,244,.35);writing-mode:vertical-rl;animation:pulse 2.5s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:.35}50%{opacity:.9}}
 
-        .focus:not-sr-only:focus {
-            position: static;
-            width: auto;
-            height: auto;
-            padding: inherit;
-            margin: inherit;
-            overflow: visible;
-            clip: auto;
-            white-space: normal;
-        }
+/* ══ S2 ══ */
+#s2{background:var(--B);padding:5rem 2rem}
+.s2-in{max-width:1100px;width:100%;position:relative;z-index:2}
+.s2-deco{position:absolute;right:-1rem;top:50%;transform:translateY(-50%);font-family:'Archivo Black',sans-serif;font-size:clamp(7rem,17vw,19rem);color:transparent;-webkit-text-stroke:1px rgba(233,236,239,.04);line-height:1;pointer-events:none}
+.stag{display:inline-block;font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;border:1px solid var(--Y);color:var(--Y);padding:.28rem .75rem;margin-bottom:2rem}
+.s2-big{font-family:'Archivo Black',sans-serif;font-size:clamp(2.4rem,7vw,7rem);line-height:.92;letter-spacing:-.02em;text-transform:uppercase;color:var(--L)}
+.s2-big .sk{position:relative;display:inline-block}
+.s2-big .sk::after{content:'';position:absolute;left:0;top:52%;width:100%;height:3px;background:var(--Y);transform:translateY(-50%)}
+.s2-big em{color:var(--Y);font-style:normal}
+.s2-ch{margin-top:1.8rem;font-size:clamp(.95rem,2.2vw,1.5rem);font-style:italic;color:rgba(233,236,239,.5);max-width:600px;line-height:1.65}
+.s2-ch em{color:var(--P);font-style:normal}
 
-        /* Keyboard navigation indicator */
-        body.keyboard-nav *:focus {
-            outline: 2px solid var(--primary);
-            outline-offset: 2px;
-        }
+/* ══ S3 ══ */
+#s3{background:var(--INK2)}
+.s3-hd{width:100%;max-width:1000px;display:flex;align-items:baseline;justify-content:space-between;gap:2rem;margin-bottom:2.8rem;flex-wrap:wrap}
+.s3-ttl{font-family:'Archivo Black',sans-serif;font-size:clamp(1.8rem,4.5vw,4.5rem);text-transform:uppercase;letter-spacing:-.02em;color:var(--L)}
+.s3-ttl .hl{color:var(--P)}
+.s3-ct{font-family:'Space Mono',monospace;font-size:.62rem;color:rgba(164,136,244,.45);letter-spacing:.1em;text-transform:uppercase}
+.tgrid{width:100%;max-width:1000px;display:grid;grid-template-columns:1fr 1fr;border:1px solid rgba(164,136,244,.13)}
+.tr{display:flex;align-items:center;gap:1.4rem;padding:1.35rem 1.7rem;border-bottom:1px solid rgba(164,136,244,.1);border-right:1px solid rgba(164,136,244,.1);position:relative;overflow:hidden;opacity:0;transform:translateX(-18px);transition:opacity .5s,transform .5s,background .3s}
+.tr:nth-child(even){border-right:none}
+.tr:nth-last-child(-n+2){border-bottom:none}
+.tr.on{opacity:1;transform:translateX(0)}
+.tr::before{content:'';position:absolute;inset:0;background:var(--P);opacity:0;transition:opacity .3s}
+.tr:hover::before{opacity:.06}
+.tr:hover .tn{color:var(--Y)}
+.tn{font-family:'Archivo Black',sans-serif;font-size:1.9rem;color:rgba(164,136,244,.18);transition:color .3s;min-width:2.3rem;line-height:1}
+.tt{font-size:clamp(.82rem,1.4vw,1rem);color:var(--L);line-height:1.4}
 
-        /* Custom Cursor - Refined */
-        * {
-            cursor: none !important;
-        }
+/* ══ S4 ══ */
+#s4{background:var(--INK)}
+.s4-deco{position:absolute;bottom:-2rem;right:-1rem;font-family:'Archivo Black',sans-serif;font-size:clamp(6rem,14vw,17rem);color:transparent;-webkit-text-stroke:1px rgba(164,136,244,.04);pointer-events:none;line-height:1}
+.s4-in{max-width:1000px;width:100%;position:relative;z-index:2}
+.s4-ttl{font-family:'Archivo Black',sans-serif;font-size:clamp(1.9rem,4.5vw,4.3rem);text-transform:uppercase;letter-spacing:-.02em;color:var(--L);margin-bottom:2.8rem}
+.s4-ttl .y{color:var(--Y)}
+.rtape{display:flex;flex-wrap:wrap;gap:.55rem}
+.rt{font-family:'Space Mono',monospace;font-size:clamp(.78rem,1.3vw,.95rem);padding:.65rem 1.2rem;border:1px solid rgba(164,136,244,.22);color:rgba(233,236,239,.65);position:relative;overflow:hidden;opacity:0;transform:translateY(14px);transition:opacity .4s,transform .4s,color .3s,border-color .3s}
+.rt.on{opacity:1;transform:translateY(0)}
+.rt::after{content:'';position:absolute;inset:0;background:var(--P);transform:translateX(-101%);transition:transform .3s cubic-bezier(.16,1,.3,1);z-index:-1}
+.rt:hover{color:var(--INK);border-color:var(--P)}
+.rt:hover::after{transform:translateX(0)}
 
-        @keyframes pulse-cursor-purple {
-            0%, 100% {
-                box-shadow: 0 0 0 0 rgba(164, 136, 244, 0.7), 0 0 20px 0 rgba(164, 136, 244, 0.5);
-            }
-            50% {
-                box-shadow: 0 0 0 12px rgba(164, 136, 244, 0.2), 0 0 30px 5px rgba(164, 136, 244, 0.3);
-            }
-        }
+/* ══ S5 POSITIONS ══ */
+#s5{background:var(--INK2);min-height:auto;padding:6rem 2rem}
+.s5-tp{width:100%;max-width:1100px;display:flex;align-items:flex-end;justify-content:space-between;gap:2rem;margin-bottom:3rem;flex-wrap:wrap}
+.s5-ttl{font-family:'Archivo Black',sans-serif;font-size:clamp(3rem,9vw,9rem);text-transform:uppercase;letter-spacing:-.03em;line-height:.88;color:var(--L)}
+.s5-ttl .ol{color:transparent;-webkit-text-stroke:2px var(--P)}
+.s5-sb{font-family:'Space Mono',monospace;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(164,136,244,.45);max-width:190px;text-align:right;line-height:1.9}
+.plist{width:100%;max-width:1100px;display:flex;flex-direction:column}
+.pi{display:flex;align-items:center;justify-content:space-between;padding:1.45rem 0;border-bottom:1px solid rgba(164,136,244,.11);gap:1.5rem;position:relative;cursor:none;overflow:hidden;opacity:0;transform:translateY(18px);transition:opacity .5s,transform .5s}
+.pi.on{opacity:1;transform:translateY(0)}
+.pi::before{content:'';position:absolute;left:-100%;top:0;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(164,136,244,.055),transparent);transition:left .5s}
+.pi:hover::before{left:100%}
+.pi:hover .pn{color:var(--Y)}
+.pi:hover .papply{background:var(--Y);color:var(--INK);border-color:var(--Y)}
+.pleft{display:flex;align-items:center;gap:1.8rem;flex:1;min-width:0}
+.pic{font-size:1.45rem;width:2.8rem;text-align:center;flex-shrink:0}
+.pn{font-family:'Archivo Black',sans-serif;font-size:clamp(1.15rem,2.3vw,1.9rem);text-transform:uppercase;letter-spacing:-.01em;color:var(--L);transition:color .3s}
+.pj{font-family:'Space Mono',monospace;font-size:.58rem;color:var(--P);letter-spacing:.07em;margin-top:.18rem}
+.pnum{font-family:'Space Mono',monospace;font-size:.58rem;color:rgba(164,136,244,.28);letter-spacing:.1em}
+.papply{font-family:'Archivo Black',sans-serif;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;padding:.55rem 1.2rem;border:1px solid rgba(164,136,244,.28);color:var(--P);background:transparent;cursor:none;flex-shrink:0;transition:background .2s,color .2s,border-color .2s;clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,8px 100%,0 calc(100% - 8px))}
+.avg{margin-top:2.2rem;font-family:'Space Mono',monospace;font-size:.72rem;color:rgba(164,136,244,.38);letter-spacing:.1em;text-transform:uppercase;text-align:center;width:100%;max-width:1100px}
+.avg em{color:var(--Y);font-style:normal}
 
-        @keyframes pulse-cursor-yellow {
-            0%, 100% {
-                box-shadow: 0 0 0 0 rgba(250, 204, 21, 0.7), 0 0 20px 0 rgba(250, 204, 21, 0.5);
-            }
-            50% {
-                box-shadow: 0 0 0 12px rgba(250, 204, 21, 0.2), 0 0 30px 5px rgba(250, 204, 21, 0.3);
-            }
-        }
+/* ══ S6 REQUIREMENTS ══ */
+#s6{background:var(--B)}
+.s6-in{max-width:900px;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.rlbl{font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--Y);margin-bottom:1.4rem}
+.rttl{font-family:'Archivo Black',sans-serif;font-size:clamp(2.4rem,5.5vw,4.8rem);text-transform:uppercase;letter-spacing:-.02em;color:var(--L);line-height:.9}
+.rttl .blk{display:block;-webkit-text-stroke:1px rgba(233,236,239,.28);color:transparent}
+.rfine{margin-top:2.2rem;font-size:.9rem;font-style:italic;color:rgba(233,236,239,.42);line-height:1.9}
+.rfine span{color:var(--P);font-style:normal;font-weight:500}
+.rright{display:flex;flex-direction:column;gap:1.1rem}
+.ritem{display:flex;align-items:center;gap:1rem;opacity:0;transform:translateX(28px);transition:opacity .5s,transform .5s}
+.ritem.on{opacity:1;transform:translateX(0)}
+.rdash{width:22px;height:2px;background:var(--Y);flex-shrink:0}
+.rtxt{font-family:'Archivo Black',sans-serif;font-size:clamp(1.45rem,2.8vw,2.4rem);text-transform:uppercase;letter-spacing:-.01em;color:var(--L)}
 
-        .custom-cursor {
-            position: fixed;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9999;
-            transform: translate(-50%, -50%);
-            transition: background-color 0.2s cubic-bezier(0.19, 1, 0.22, 1), transform 0.2s cubic-bezier(0.19, 1, 0.22, 1);
-            will-change: transform;
-        }
+/* ══ S7 SIDE EFFECTS ══ */
+#s7{background:var(--INK)}
+.s7-deco{position:absolute;top:50%;right:-2rem;transform:translateY(-50%);font-family:'Archivo Black',sans-serif;font-size:11rem;color:transparent;-webkit-text-stroke:1px rgba(164,136,244,.04);pointer-events:none;line-height:1}
+.s7-in{max-width:1000px;width:100%;position:relative;z-index:2}
+.s7-pre{font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--P);margin-bottom:.9rem}
+.s7-ttl{font-family:'Archivo Black',sans-serif;font-size:clamp(1.9rem,4.5vw,4.3rem);text-transform:uppercase;letter-spacing:-.02em;color:var(--L);line-height:.94;margin-bottom:2.8rem}
+.s7-ttl .y{color:var(--Y)}
+.fxlist{display:flex;flex-direction:column;gap:.75rem}
+.fxi{display:flex;align-items:center;gap:1.1rem;padding:.95rem 1.4rem;border:1px solid rgba(164,136,244,.1);position:relative;overflow:hidden;opacity:0;transform:translateX(-28px);transition:opacity .5s,transform .5s,border-color .3s}
+.fxi.on{opacity:1;transform:translateX(0)}
+.fxi:hover{border-color:rgba(164,136,244,.38)}
+.fxi::before{content:'';position:absolute;left:0;top:0;width:3px;height:100%;background:var(--P)}
+.fxw{font-family:'Space Mono',monospace;font-size:.48rem;letter-spacing:.14em;text-transform:uppercase;color:var(--INK);background:var(--Y);padding:.18rem .45rem;flex-shrink:0}
+.fxt{font-size:clamp(.88rem,1.7vw,1.05rem);color:rgba(233,236,239,.78)}
 
-        .custom-cursor.purple {
-            background-color: var(--primary);
-            animation: pulse-cursor-purple 1.5s infinite;
-        }
+/* ══ S8 CINEMATIC ══ */
+#s8{background:var(--INK2);text-align:center;min-height:80vh}
+.s8-ln{width:1px;height:80px;background:linear-gradient(to bottom,transparent,var(--P));margin:0 auto 2.4rem;opacity:0;transform:scaleY(0);transition:opacity .7s,transform .7s;transform-origin:top}
+.s8-ln.on{opacity:1;transform:scaleY(1)}
+.s8-big{font-family:'Archivo Black',sans-serif;font-size:clamp(2.4rem,9vw,9rem);text-transform:uppercase;letter-spacing:-.03em;line-height:.9;color:var(--L)}
+.s8-big .not{color:transparent;-webkit-text-stroke:2px var(--L)}
+.s8-big .vol{color:var(--P)}
+.s8-sub{margin-top:2rem;font-size:clamp(1rem,1.9vw,1.35rem);font-style:italic;color:rgba(233,236,239,.38);letter-spacing:.02em}
+.s8-sub em{color:var(--Y);font-style:normal}
 
-        .custom-cursor.yellow {
-            background-color: var(--secondary);
-            animation: pulse-cursor-yellow 1.5s infinite;
-            transform: translate(-50%, -50%) scale(1.5);
-        }
+/* ══ S9 CTA ══ */
+#s9{background:var(--INK)}
+.s9-blur{position:absolute;width:480px;height:480px;border-radius:50%;background:var(--B);opacity:.28;filter:blur(110px);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
+.s9-in{max-width:900px;width:100%;text-align:center;position:relative;z-index:2}
+.s9-so{font-family:'Archivo Black',sans-serif;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--P);margin-bottom:1.1rem;opacity:0;animation:fi .6s cubic-bezier(.16,1,.3,1) forwards .1s}
+.s9-ttl{font-family:'Archivo Black',sans-serif;font-size:clamp(2.4rem,7vw,5.5rem);text-transform:uppercase;letter-spacing:-.03em;line-height:.92;color:var(--L);opacity:0;animation:fi .7s cubic-bezier(.16,1,.3,1) forwards .26s}
+.s9-ttl .y{color:var(--Y)}
+.s9-sub{margin-top:1.8rem;font-size:clamp(.95rem,2vw,1.35rem);font-style:italic;color:rgba(233,236,239,.48);max-width:600px;margin-left:auto;margin-right:auto;line-height:1.7;opacity:0;animation:fi .7s cubic-bezier(.16,1,.3,1) forwards .42s}
+.s9-btn{margin-top:2.8rem;opacity:0;animation:fi .7s cubic-bezier(.16,1,.3,1) forwards .58s}
 
-        /* Reveal Animations */
-        .reveal-hidden {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.8s cubic-bezier(0.19, 1, 0.22, 1), transform 0.8s cubic-bezier(0.19, 1, 0.22, 1);
-        }
+/* ══ FOOTER - Light Theme Override ══ */
+.social-bar{background:rgba(255,255,255,.95);backdrop-filter:blur(12px);border-top:1px solid rgba(233,236,239,.2);padding:1.5rem 2.5rem}
+.social-bar a{color:var(--B);transition:color .3s}
+.social-bar a:hover{color:var(--P)}
+footer{background:rgba(255,255,255,.95);color:var(--B);padding:1.5rem 2.5rem;border-top:1px solid rgba(233,236,239,.2);text-align:center;font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.1em}
 
-        .reveal-visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+/* ══ MODALS ══ */
+.ov{position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;background:rgba(10,6,20,.8);backdrop-filter:blur(8px);opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s}
+.ov.open{opacity:1;visibility:visible}
+.md{background:var(--INK);border:1px solid rgba(164,136,244,.2);border-radius:1.2rem;padding:2.4rem;max-width:520px;width:100%;position:relative;max-height:90vh;overflow-y:auto}
+.md-h{display:flex;justify-content:space-between;align-items:center;margin-bottom:1.8rem}
+.md-h h3{font-family:'Archivo Black',sans-serif;font-size:1.8rem;color:var(--L)}
+.md-x{background:none;border:none;color:rgba(233,236,239,.5);font-size:1.5rem;cursor:pointer;transition:color .2s}
+.md-x:hover{color:var(--L)}
+.md-p{font-size:.95rem;color:rgba(233,236,239,.7);margin-bottom:1.8rem;line-height:1.6}
+.md-f{display:flex;flex-direction:column;gap:1rem}
+.md-f label{font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(164,136,244,.7);margin-bottom:.4rem;display:block}
+.md-f input,.md-f select,.md-f textarea{background:rgba(164,136,244,.05);border:1px solid rgba(164,136,244,.15);color:var(--L);padding:.8rem;border-radius:.6rem;font-family:inherit;font-size:.95rem;transition:border-color .2s,background .2s}
+.md-f input:focus,.md-f select:focus,.md-f textarea:focus{outline:none;border-color:var(--P);background:rgba(164,136,244,.1)}
+.md-f textarea{resize:vertical;min-height:100px}
+.md-btn{background:var(--Y);color:var(--INK);border:none;padding:1rem;border-radius:.6rem;font-family:'Archivo Black',sans-serif;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:transform .2s,background .2s;margin-top:1rem}
+.md-btn:hover{transform:translateY(-2px);background:var(--P);color:var(--L)}
+.succ{display:none;text-align:center}
+.succ-ic{font-size:3rem;margin-bottom:1rem}
+.succ-h{font-family:'Archivo Black',sans-serif;font-size:1.4rem;color:var(--Y);margin-bottom:.8rem}
+.succ-p{font-size:.95rem;color:rgba(233,236,239,.7);line-height:1.6}
 
-        /* Premium Button */
-        .premium-btn {
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
-            box-shadow: 0 4px 12px rgba(30, 58, 138, 0.15);
-        }
-
-        .premium-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 24px rgba(30, 58, 138, 0.25);
-        }
-
-        .premium-btn:active {
-            transform: translateY(0px);
-        }
-
-        /* Smooth Scroll */
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* Scrollbar Refinement */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: var(--primary);
-            border-radius: 10px;
-            transition: background 0.3s ease;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--dark);
-        }
-
-        /* Link Refinement */
-        a {
-            transition: color 0.3s cubic-bezier(0.19, 1, 0.22, 1);
-        }
-
-        /* Focus States */
-        button:focus-visible,
-        a:focus-visible,
-        input:focus-visible,
-        textarea:focus-visible {
-            outline: 2px solid var(--primary);
-            outline-offset: 2px;
-        }
-
-        /* Card Refinement */
-        .card-hover {
-            transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
-        }
-
-        .card-hover:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Typography */
-        h1, h2, h3, h4, h5, h6 {
-            letter-spacing: -0.02em;
-            font-weight: 900;
-        }
-
-        p {
-            line-height: 1.7;
-        }
-
-        /* Navbar Refinement */
-        nav {
-            transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
-        }
-
-        nav a {
-            position: relative;
-            padding-bottom: 2px;
-        }
-
-        nav a::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--primary);
-            transition: width 0.3s cubic-bezier(0.19, 1, 0.22, 1);
-        }
-
-        nav a:hover::after {
-            width: 100%;
-        }
-
-        /* Mobile Menu */
-        #mobile-menu {
-            transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
-        }
-
-        /* Section Label */
-        .section-label {
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-            font-weight: 800;
-            font-size: 0.75rem;
-            color: var(--primary);
-            display: inline-block;
-            transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
-        }
-
-        /* Position Cards */
-        .position-card {
-            transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
-            border: 1px solid #e5e7eb;
-            border-radius: 1.5rem;
-            padding: 2rem;
-            background: white;
-        }
-
-        .position-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(164, 136, 244, 0.15);
-            border-color: var(--primary);
-        }
-
-        .position-card:hover .position-icon {
-            transform: scale(1.1);
-        }
-
-        .position-icon {
-            font-size: 2.5rem;
-            transition: transform 0.3s cubic-bezier(0.19, 1, 0.22, 1);
-        }
-
-        /* Smooth Transitions */
-        button,
-        a,
-        input,
-        textarea,
-        select {
-            transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
-        }
-
-        /* Text Selection */
-        ::selection {
-            background-color: var(--primary);
-            color: white;
-        }
-
-        ::-moz-selection {
-            background-color: var(--primary);
-            color: white;
-        }
-
-        /* Image Refinement */
-        img {
-            transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
-        }
-
-        img:hover {
-            filter: brightness(1.05);
-        }
-
-        /* Gradient */
-        .gradient-primary {
-            background: linear-gradient(135deg, var(--primary) 0%, #8a6ef1 100%);
-        }
-
-        .gradient-secondary {
-            background: linear-gradient(135deg, var(--secondary) 0%, #f59e0b 100%);
-        }
-    </style>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#a488f4',
-                        secondary: '#facc15',
-                        dark: '#1e3a8a',
-                    },
-                    fontFamily: {
-                        sans: ['Plus Jakarta Sans', 'sans-serif'],
-                        serif: ['Playfair Display', 'serif'],
-                    }
-                }
-            }
-        }
-    </script>
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
+@media(max-width:768px){
+  nav{padding:1rem 1.5rem}
+  .nav-w{font-size:.58rem}
+  section{padding:5rem 1.5rem 3rem}
+  .s6-in{grid-template-columns:1fr;gap:2rem}
+}
+</style>
 </head>
-<body class="min-h-screen bg-white overflow-x-hidden selection:bg-[#a488f4] selection:text-white">
-    <!-- Skip to Main Content Link -->
-    <a href="#main-content" class="sr-only focus:not-sr-only">Skip to main content</a>
+<body>
+<div id="cur"></div>
+<div id="cur2"></div>
 
-    <!-- Custom Cursor -->
-    <div id="custom-cursor" class="custom-cursor purple"></div>
+<!-- MARQUEE -->
+<div class="mwrap">
+  <div class="mtrack">
+    <span>✦ FOR INSANE PEOPLE ONLY ✦</span>
+    <span>✦ FOR INSANE PEOPLE ONLY ✦</span>
+    <span>✦ FOR INSANE PEOPLE ONLY ✦</span>
+  </div>
+</div>
 
-    <!-- Sticky Navbar - Premium Refinement -->
-    <nav id="navbar" class="fixed top-0 w-full z-50 transition-all duration-500 bg-white/80 backdrop-blur-xl border-b border-gray-100/50">
-        <div class="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-            <div class="flex justify-between items-center h-20">
-                <!-- Logo -->
-                <div class="flex items-center gap-3 group">
-                    <img src="https://raw.githubusercontent.com/dearfutureluminary-maker/Hiring-Team/main/logo.svg" alt="Dear Future Luminary Logo" class="h-12 w-12 transition-transform duration-300 group-hover:scale-110" onerror="this.style.display='none'" />
-                    <span class="font-extrabold text-xl text-[#1e3a8a] hidden sm:inline tracking-tight">DFL</span>
-                </div>
+<!-- NAV -->
+<nav>
+  <div class="nav-w">DFL</div>
+  <div style="display:flex;gap:2rem;align-items:center">
+    <a href="#s5" style="color:var(--B);text-decoration:none;font-family:'Archivo Black',sans-serif;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;transition:color .3s" onmouseover="this.style.color='var(--P)'" onmouseout="this.style.color='var(--B)'">Positions</a>
+    <a href="#s6" style="color:var(--B);text-decoration:none;font-family:'Archivo Black',sans-serif;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;transition:color .3s" onmouseover="this.style.color='var(--P)'" onmouseout="this.style.color='var(--B)'">Requirements</a>
+    <button class="nav-t" onclick="openModal('apply')">Apply</button>
+  </div>
+</nav>
 
-                <!-- Desktop Menu -->
-                <div class="hidden md:flex items-center gap-10">
-                    <a href="#positions" class="text-gray-600 hover:text-[#a488f4] font-bold text-sm uppercase tracking-widest transition-colors duration-300">Open Positions</a>
-                    <a href="#why-join" class="text-gray-600 hover:text-[#a488f4] font-bold text-sm uppercase tracking-widest transition-colors duration-300">Why Join</a>
-                    <a href="#requirements" class="text-gray-600 hover:text-[#a488f4] font-bold text-sm uppercase tracking-widest transition-colors duration-300">Requirements</a>
-                    <button onclick="document.getElementById('applyModal').classList.remove('hidden'); document.getElementById('applyModal').classList.add('flex'); document.body.style.overflow='hidden'" class="px-8 py-3 bg-[#1e3a8a] text-white rounded-2xl font-black hover:bg-[#a488f4] transition-all shadow-lg shadow-blue-900/10 premium-btn">Apply Now</button>
-                </div>
-
-                <!-- Mobile Menu Toggle -->
-                <div class="md:hidden">
-                    <button onclick="toggleMobileMenu()" class="p-2 text-gray-600 hover:text-[#a488f4] transition-colors" aria-label="Toggle menu">
-                        <i data-lucide="menu" id="menu-icon" class="w-8 h-8"></i>
-                    </button>
-                </div>
-            </div>
-
-            <!-- Mobile Menu -->
-            <div id="mobile-menu" class="hidden md:hidden py-6 border-t border-gray-100 bg-white space-y-4">
-                <a href="#positions" class="block px-4 text-gray-600 font-bold text-lg hover:text-[#a488f4] transition-colors">Open Positions</a>
-                <a href="#why-join" class="block px-4 text-gray-600 font-bold text-lg hover:text-[#a488f4] transition-colors">Why Join</a>
-                <a href="#requirements" class="block px-4 text-gray-600 font-bold text-lg hover:text-[#a488f4] transition-colors">Requirements</a>
-                <div class="px-4 pt-4">
-                    <button onclick="document.getElementById('applyModal').classList.remove('hidden'); document.getElementById('applyModal').classList.add('flex'); document.body.style.overflow='hidden'" class="w-full py-4 bg-[#1e3a8a] text-white rounded-2xl font-black hover:bg-[#a488f4] transition-all">Apply Now</button>
-                </div>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="pt-40 pb-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-[#a488f4] via-[#8a6ef1] to-[#7b5fde] relative overflow-hidden min-h-[80vh] flex items-center">
-        <div class="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full -mr-48 -mt-48"></div>
-        <div class="absolute bottom-0 left-0 w-96 h-96 bg-white/5 rounded-full -ml-48 -mb-48"></div>
-        
-        <div class="max-w-7xl mx-auto relative z-10 w-full">
-            <div class="space-y-12 reveal-hidden">
-                <div>
-                    <h1 class="text-6xl md:text-8xl font-black text-white mb-6 leading-[0.9] tracking-tighter">We're Hiring</h1>
-                    <p class="text-2xl md:text-4xl font-serif text-[#facc15] italic">For insane people only.</p>
-                </div>
-                <div class="space-y-6 text-white/90 text-xl leading-relaxed font-medium max-w-2xl">
-                    <p>Join Dear Future Luminary and help us build something that changes how students see their future. No corporate fluff. Just real impact, real learning, and real chaos.</p>
-                    <p>We're looking for ambitious, creative, and committed people who care about making actual change.</p>
-                </div>
-                <div>
-                    <button onclick="document.getElementById('applyModal').classList.remove('hidden'); document.getElementById('applyModal').classList.add('flex'); document.body.style.overflow='hidden'" class="px-12 py-6 bg-white text-[#1e3a8a] rounded-2xl font-black text-xl hover:bg-[#facc15] hover:shadow-2xl transition-all duration-300 flex items-center justify-center gap-3 group">
-                        Start Your Application
-                        <i data-lucide="arrow-right" class="w-6 h-6 group-hover:translate-x-1 transition-transform"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Why Join Section -->
-    <section id="why-join" class="py-32 px-4 sm:px-6 lg:px-8 bg-white relative reveal-hidden">
-        <div class="max-w-7xl mx-auto">
-            <div class="mb-20">
-                <span class="section-label px-6 py-3 bg-blue-50 rounded-full">Why Join DFL</span>
-                <h2 class="text-7xl md:text-9xl font-black text-[#1e3a8a] mt-8 leading-[0.85] tracking-tighter">
-                    Build <span class="text-[#a488f4]">Something</span><br />
-                    That <span class="text-[#facc15]">Matters.</span>
-                </h2>
-            </div>
-            <div class="grid md:grid-cols-2 gap-x-24 gap-y-16">
-                <div class="space-y-8 reveal-item">
-                    <div class="space-y-4">
-                        <h3 class="text-4xl md:text-5xl font-black text-[#1e3a8a]">Real Impact</h3>
-                        <p class="text-xl text-gray-600 leading-relaxed">Your work directly affects how thousands of students see their future. This isn't a side project—it's a movement.</p>
-                    </div>
-                </div>
-                <div class="space-y-8 reveal-item">
-                    <div class="space-y-4">
-                        <h3 class="text-4xl md:text-5xl font-black text-[#1e3a8a]">Learn Fast</h3>
-                        <p class="text-xl text-gray-600 leading-relaxed">Work alongside ambitious people. Develop skills in leadership, strategy, design, and execution. Grow beyond what school teaches.</p>
-                    </div>
-                </div>
-                <div class="space-y-8 reveal-item">
-                    <div class="space-y-4">
-                        <h3 class="text-4xl md:text-5xl font-black text-[#1e3a8a]">Freedom to Create</h3>
-                        <p class="text-xl text-gray-600 leading-relaxed">No micromanagement. We trust you to own your projects, experiment, and bring your ideas to life.</p>
-                    </div>
-                </div>
-                <div class="space-y-8 reveal-item">
-                    <div class="space-y-4">
-                        <h3 class="text-4xl md:text-5xl font-black text-[#1e3a8a]">Global Community</h3>
-                        <p class="text-xl text-gray-600 leading-relaxed">Connect with students from around the world who are equally passionate about impact and growth.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Open Positions Section -->
-    <section id="positions" class="py-32 px-4 sm:px-6 lg:px-8 bg-[#fcfcfc] relative reveal-hidden">
-        <div class="max-w-7xl mx-auto">
-            <div class="mb-20">
-                <span class="section-label px-6 py-3 bg-white border border-gray-100 rounded-full shadow-sm">Open Positions</span>
-                <h2 class="text-8xl md:text-[10rem] font-black text-[#1e3a8a] mt-8 leading-[0.75] tracking-tighter">Pick Your <span class="text-[#a488f4]">Weapon</span></h2>
-                <p class="text-3xl md:text-4xl text-gray-400 mt-8 font-medium max-w-4xl">7 roles. Infinite possibilities. Choose where you want to make chaos.</p>
-            </div>
-            <div class="grid md:grid-cols-2 gap-8">
-                <!-- Position Cards -->
-                <div class="position-card reveal-item group">
-                    <div class="flex items-start justify-between mb-6">
-                        <div>
-                            <div class="position-icon mb-4">🎨</div>
-                            <h3 class="text-2xl font-black text-[#1e3a8a]">Creative Team</h3>
-                            <p class="text-sm text-[#a488f4] font-bold mt-2">Turns sleep deprivation into visuals</p>
-                        </div>
-                    </div>
-                    <p class="text-gray-600 mb-6">Design, branding, visual storytelling. Make DFL look as good as our mission sounds.</p>
-                    <a href="https://tally.so/r/LZaYWj" target="_blank" class="inline-flex items-center gap-2 text-[#1e3a8a] font-black hover:text-[#a488f4] transition-colors">
-                        Apply Now <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                    </a>
-                </div>
-
-                <div class="position-card reveal-item group">
-                    <div class="flex items-start justify-between mb-6">
-                        <div>
-                            <div class="position-icon mb-4">🔍</div>
-                            <h3 class="text-2xl font-black text-[#1e3a8a]">Research Team</h3>
-                            <p class="text-sm text-[#a488f4] font-bold mt-2">Professional rabbit hole enthusiasts</p>
-                        </div>
-                    </div>
-                    <p class="text-gray-600 mb-6">Find opportunities, analyze trends, uncover hidden gems. Your research powers our curation.</p>
-                    <a href="https://tally.so/r/Xx8Mge" target="_blank" class="inline-flex items-center gap-2 text-[#1e3a8a] font-black hover:text-[#a488f4] transition-colors">
-                        Apply Now <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                    </a>
-                </div>
-
-                <div class="position-card reveal-item group">
-                    <div class="flex items-start justify-between mb-6">
-                        <div>
-                            <div class="position-icon mb-4">✍️</div>
-                            <h3 class="text-2xl font-black text-[#1e3a8a]">Content Creators</h3>
-                            <p class="text-sm text-[#a488f4] font-bold mt-2">Chronically online for a good cause</p>
-                        </div>
-                    </div>
-                    <p class="text-gray-600 mb-6">Write, create, tell stories. Make students feel seen, guided, and inspired.</p>
-                    <a href="https://tally.so/r/dW8DpD" target="_blank" class="inline-flex items-center gap-2 text-[#1e3a8a] font-black hover:text-[#a488f4] transition-colors">
-                        Apply Now <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                    </a>
-                </div>
-
-                <div class="position-card reveal-item group">
-                    <div class="flex items-start justify-between mb-6">
-                        <div>
-                            <div class="position-icon mb-4">💻</div>
-                            <h3 class="text-2xl font-black text-[#1e3a8a]">Web Development</h3>
-                            <p class="text-sm text-[#a488f4] font-bold mt-2">Probably debugging right now</p>
-                        </div>
-                    </div>
-                    <p class="text-gray-600 mb-6">Build the platform. Code the future. Make DFL work beautifully across all devices.</p>
-                    <a href="https://tally.so/r/VLbMdN" target="_blank" class="inline-flex items-center gap-2 text-[#1e3a8a] font-black hover:text-[#a488f4] transition-colors">
-                        Apply Now <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                    </a>
-                </div>
-
-                <div class="position-card reveal-item group">
-                    <div class="flex items-start justify-between mb-6">
-                        <div>
-                            <div class="position-icon mb-4">🤝</div>
-                            <h3 class="text-2xl font-black text-[#1e3a8a]">Outreach & Partnerships</h3>
-                            <p class="text-sm text-[#a488f4] font-bold mt-2">Zero cold email shame, infinite results</p>
-                        </div>
-                    </div>
-                    <p class="text-gray-600 mb-6">Connect with organizations, build partnerships, expand our reach. Open doors.</p>
-                    <a href="https://tally.so/r/rjJdpp" target="_blank" class="inline-flex items-center gap-2 text-[#1e3a8a] font-black hover:text-[#a488f4] transition-colors">
-                        Apply Now <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                    </a>
-                </div>
-
-                <div class="position-card reveal-item group">
-                    <div class="flex items-start justify-between mb-6">
-                        <div>
-                            <div class="position-icon mb-4">🎤</div>
-                            <h3 class="text-2xl font-black text-[#1e3a8a]">Events & Workshops</h3>
-                            <p class="text-sm text-[#a488f4] font-bold mt-2">Turns chaos into structured chaos</p>
-                        </div>
-                    </div>
-                    <p class="text-gray-600 mb-6">Plan, organize, execute. Create experiences that inspire and connect students.</p>
-                    <a href="https://tally.so/r/Zj1zgA" target="_blank" class="inline-flex items-center gap-2 text-[#1e3a8a] font-black hover:text-[#a488f4] transition-colors">
-                        Apply Now <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                    </a>
-                </div>
-
-                <div class="position-card reveal-item group md:col-span-2">
-                    <div class="flex items-start justify-between mb-6">
-                        <div>
-                            <div class="position-icon mb-4">📣</div>
-                            <h3 class="text-2xl font-black text-[#1e3a8a]">Marketing & Social Media</h3>
-                            <p class="text-sm text-[#a488f4] font-bold mt-2">Brainrotted for strategic purposes</p>
-                        </div>
-                    </div>
-                    <p class="text-gray-600 mb-6">Grow our community, tell our story, make DFL impossible to ignore. Own our voice across all platforms.</p>
-                    <a href="https://tally.so/r/NpbJgN" target="_blank" class="inline-flex items-center gap-2 text-[#1e3a8a] font-black hover:text-[#a488f4] transition-colors">
-                        Apply Now <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Requirements Section -->
-    <section id="requirements" class="py-32 px-4 sm:px-6 lg:px-8 bg-white relative reveal-hidden">
-        <div class="max-w-7xl mx-auto">
-            <div class="grid lg:grid-cols-2 gap-24 items-center">
-                <div class="space-y-12">
-                    <div class="space-y-6">
-                        <span class="section-label px-4 py-2 bg-blue-50 rounded-full">What We Need</span>
-                        <h2 class="text-7xl md:text-8xl font-black text-[#1e3a8a] leading-[0.85] tracking-tighter">
-                            The Rules<br />
-                            Of <span class="text-[#a488f4]">Chaos</span>
-                        </h2>
-                    </div>
-                    <p class="text-2xl text-gray-600 italic leading-tight border-l-8 border-[#a488f4] pl-8">
-                        "This isn't LinkedIn. We know you're 17. That's kind of the point."
-                    </p>
-                </div>
-                <div class="space-y-8">
-                    <div class="flex items-start gap-4 reveal-item">
-                        <div class="w-8 h-1 bg-[#facc15] mt-2 flex-shrink-0"></div>
-                        <div>
-                            <h3 class="text-3xl font-black text-[#1e3a8a] mb-2">Be Creative</h3>
-                            <p class="text-lg text-gray-600">Bring your unique perspective. We want ideas, not templates.</p>
-                        </div>
-                    </div>
-                    <div class="flex items-start gap-4 reveal-item">
-                        <div class="w-8 h-1 bg-[#facc15] mt-2 flex-shrink-0"></div>
-                        <div>
-                            <h3 class="text-3xl font-black text-[#1e3a8a] mb-2">Be Committed</h3>
-                            <p class="text-lg text-gray-600">Show up. Follow through. Own your projects.</p>
-                        </div>
-                    </div>
-                    <div class="flex items-start gap-4 reveal-item">
-                        <div class="w-8 h-1 bg-[#facc15] mt-2 flex-shrink-0"></div>
-                        <div>
-                            <h3 class="text-3xl font-black text-[#1e3a8a] mb-2">Be Nice</h3>
-                            <p class="text-lg text-gray-600">We're a team. Respect, support, and lift each other up.</p>
-                        </div>
-                    </div>
-                    <div class="flex items-start gap-4 reveal-item">
-                        <div class="w-8 h-1 bg-[#facc15] mt-2 flex-shrink-0"></div>
-                        <div>
-                            <h3 class="text-3xl font-black text-[#1e3a8a] mb-2">Be Willing to Learn</h3>
-                            <p class="text-lg text-gray-600">You don't need to know everything. Curiosity and growth mindset matter more.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="py-32 px-4 sm:px-6 lg:px-8 bg-[#fcfcfc] reveal-hidden">
-        <div class="max-w-7xl mx-auto">
-            <div class="bg-gradient-to-br from-[#1e3a8a] to-[#2d4a9f] rounded-[4rem] p-16 md:p-32 text-center relative overflow-hidden shadow-2xl">
-                <div class="absolute inset-0 opacity-20 pointer-events-none">
-                    <div class="absolute top-10 left-10 w-64 h-64 bg-white rounded-full blur-3xl"></div>
-                    <div class="absolute bottom-10 right-10 w-96 h-96 bg-[#facc15] rounded-full blur-3xl"></div>
-                </div>
-                
-                <div class="relative z-10 space-y-12 max-w-4xl mx-auto">
-                    <h2 class="text-6xl md:text-8xl font-black text-white leading-[1] tracking-tighter">Ready to <br /><span class="text-[#facc15]">make chaos?</span></h2>
-                    <p class="text-2xl text-white font-bold leading-relaxed">Join a community of students who act, grow, and support each other. This is your space to thrive.</p>
-                    
-                    <div class="flex flex-col sm:flex-row gap-6 justify-center pt-8">
-                        <button onclick="document.getElementById('applyModal').classList.remove('hidden'); document.getElementById('applyModal').classList.add('flex'); document.body.style.overflow='hidden'" class="px-12 py-6 bg-white text-[#1e3a8a] rounded-2xl font-black text-xl hover:bg-[#facc15] hover:shadow-2xl transition-all duration-300 flex items-center justify-center gap-3 group">
-                            Apply Now
-                            <i data-lucide="arrow-right" class="w-6 h-6 group-hover:translate-x-1 transition-transform"></i>
-                        </button>
-                        <a href="https://tally.so/r/Y5JMyz" target="_blank" rel="noopener noreferrer" class="px-12 py-6 bg-transparent border-2 border-white/30 text-white rounded-2xl font-black text-xl hover:bg-white/10 transition-all duration-300 flex items-center justify-center gap-3">
-                            Sponsor Us
-                            <i data-lucide="heart" class="w-6 h-6"></i>
-                        </a>
-                    </div>
-                    
-                    <p class="text-white/60 text-base font-bold tracking-widest uppercase">
-                        No commitment required. Start your journey today.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Social Connect Bar - Premium Refinement -->
-    <div class="bg-black py-6 px-4 sm:px-6 lg:px-8">
-        <div class="max-w-7xl mx-auto flex flex-wrap justify-center items-center gap-8 md:gap-12">
-            <a href="https://www.facebook.com/dear.future.luminary" target="_blank" rel="noopener noreferrer" class="text-white/40 hover:text-[#facc15] transition-colors duration-300 flex items-center gap-2 group" aria-label="Facebook">
-                <i class="fab fa-facebook w-5 h-5"></i>
-                <span class="text-xs uppercase tracking-widest hidden group-hover:inline">Facebook</span>
-            </a>
-            <a href="https://www.youtube.com/@malak_luminary" target="_blank" rel="noopener noreferrer" class="text-white/40 hover:text-[#facc15] transition-colors duration-300 flex items-center gap-2 group" aria-label="YouTube">
-                <i class="fab fa-youtube w-5 h-5"></i>
-                <span class="text-xs uppercase tracking-widest hidden group-hover:inline">YouTube</span>
-            </a>
-            <a href="https://www.instagram.com/dear.future.luminary" target="_blank" rel="noopener noreferrer" class="text-white/40 hover:text-[#facc15] transition-colors duration-300 flex items-center gap-2 group" aria-label="Instagram">
-                <i class="fab fa-instagram w-5 h-5"></i>
-                <span class="text-xs uppercase tracking-widest hidden group-hover:inline">Instagram</span>
-            </a>
-            <a href="mailto:contact@dearfutureluminary.com" class="text-white/40 hover:text-[#facc15] transition-colors duration-300 flex items-center gap-2 group" aria-label="Email">
-                <i class="fas fa-envelope w-5 h-5"></i>
-                <span class="text-xs uppercase tracking-widest hidden group-hover:inline">Email</span>
-            </a>
-        </div>
+<!-- S1 HERO -->
+<section id="s1">
+  <div class="h-noise"></div>
+  <div class="hblob hb1"></div>
+  <div class="hblob hb2"></div>
+  <div class="hblob hb3"></div>
+  <div class="h-bgnum">01</div>
+  <div class="h-content">
+    <div class="h-eye">Dear Future Luminary</div>
+    <h1 class="h-h1">
+      <span>We're <span class="hy">Hiring</span></span>
+      <span><span class="ho">For</span> Insane</span>
+      <span>People <span class="hy">Only</span></span>
+    </h1>
+    <div class="h-bot">
+      <p class="h-sub">Join a movement building the future. We're looking for creative, ambitious people who care about real impact. No corporate fluff. Just chaos, growth, and purpose.</p>
+      <div class="h-cta">
+        <button class="btn-c" onclick="openModal('apply')">Start Application <span class="ar">→</span></button>
+      </div>
     </div>
+  </div>
+  <div class="s-lbl">Scroll</div>
+</section>
 
-    <!-- Footer -->
-    <footer class="bg-black text-white/60 py-8 px-4 sm:px-6 lg:px-8 border-t border-white/10">
-        <div class="max-w-7xl mx-auto text-center">
-            <p class="text-sm font-medium">© 2025 Dear Future Luminary. Built with care for the future generation.</p>
-        </div>
-    </footer>
+<!-- S2 WHY JOIN -->
+<section id="s2">
+  <div class="s2-in">
+    <div class="stag">Why Join</div>
+    <h2 class="s2-big">Build <span class="sk">Something</span> That <em>Matters</em></h2>
+    <p class="s2-ch">We're not just hiring. We're building a team of people who want to change how students see their future. Real impact. Real learning. <em>Real chaos.</em></p>
+  </div>
+</section>
 
-    <!-- Apply Modal -->
-    <div id="applyModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm modal-backdrop">
-        <div class="bg-white rounded-[2rem] p-12 max-w-md w-full mx-4 modal-content">
-            <div class="flex justify-between items-center mb-8">
-                <h3 class="text-3xl font-black text-[#1e3a8a]">Apply Now</h3>
-                <button onclick="document.getElementById('applyModal').classList.add('hidden'); document.getElementById('applyModal').classList.remove('flex'); document.body.style.overflow='auto'" class="text-gray-400 hover:text-[#1e3a8a] transition-colors" aria-label="Close">
-                    <i data-lucide="x" class="w-6 h-6"></i>
-                </button>
-            </div>
-            <p class="text-gray-600 mb-8 text-lg">Choose your role and apply through our form:</p>
-            <div class="space-y-4">
-                <a href="https://tally.so/r/NpbJgN" target="_blank" rel="noopener noreferrer" class="block w-full px-8 py-4 bg-[#1e3a8a] text-white rounded-2xl font-black text-center hover:bg-[#a488f4] transition-all duration-300">
-                    Marketing & Social Media
-                </a>
-                <a href="https://tally.so/r/Zj1zgA" target="_blank" rel="noopener noreferrer" class="block w-full px-8 py-4 bg-[#1e3a8a] text-white rounded-2xl font-black text-center hover:bg-[#a488f4] transition-all duration-300">
-                    Events & Workshops
-                </a>
-                <a href="https://tally.so/r/rjJdpp" target="_blank" rel="noopener noreferrer" class="block w-full px-8 py-4 bg-[#1e3a8a] text-white rounded-2xl font-black text-center hover:bg-[#a488f4] transition-all duration-300">
-                    Outreach & Partnerships
-                </a>
-                <a href="https://tally.so/r/VLbMdN" target="_blank" rel="noopener noreferrer" class="block w-full px-8 py-4 bg-[#1e3a8a] text-white rounded-2xl font-black text-center hover:bg-[#a488f4] transition-all duration-300">
-                    Web Developers
-                </a>
-                <a href="https://tally.so/r/dW8DpD" target="_blank" rel="noopener noreferrer" class="block w-full px-8 py-4 bg-[#1e3a8a] text-white rounded-2xl font-black text-center hover:bg-[#a488f4] transition-all duration-300">
-                    Content Creators
-                </a>
-                <a href="https://tally.so/r/LZaYWj" target="_blank" rel="noopener noreferrer" class="block w-full px-8 py-4 bg-[#1e3a8a] text-white rounded-2xl font-black text-center hover:bg-[#a488f4] transition-all duration-300">
-                    Creative Team
-                </a>
-                <a href="https://tally.so/r/Xx8Mge" target="_blank" rel="noopener noreferrer" class="block w-full px-8 py-4 bg-[#1e3a8a] text-white rounded-2xl font-black text-center hover:bg-[#a488f4] transition-all duration-300">
-                    Research Team
-                </a>
-            </div>
-        </div>
+<!-- S3 IMPACT -->
+<section id="s3">
+  <div class="s3-hd">
+    <h3 class="s3-ttl">Our <span class="hl">Impact</span></h3>
+    <div class="s3-ct">Metrics that matter</div>
+  </div>
+  <div class="tgrid">
+    <div class="tr"><div class="tn">500+</div><div class="tt">Opportunities Curated</div></div>
+    <div class="tr"><div class="tn">100+</div><div class="tt">Students Guided</div></div>
+    <div class="tr"><div class="tn">5</div><div class="tt">Countries Reached</div></div>
+    <div class="tr"><div class="tn">∞</div><div class="tt">Potential Unlocked</div></div>
+  </div>
+</section>
+
+<!-- S4 SKILLS -->
+<section id="s4">
+  <div class="s4-deco">SKILLS</div>
+  <div class="s4-in">
+    <h3 class="s4-ttl">What You'll <span class="y">Learn</span></h3>
+    <div class="rtape">
+      <span class="rt">Leadership</span>
+      <span class="rt">Strategy</span>
+      <span class="rt">Design</span>
+      <span class="rt">Content Creation</span>
+      <span class="rt">Community Building</span>
+      <span class="rt">Project Management</span>
+      <span class="rt">Collaboration</span>
+      <span class="rt">Problem Solving</span>
     </div>
+  </div>
+</section>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Custom Cursor
-            const customCursor = document.getElementById('custom-cursor');
-            let cursorPos = { x: 0, y: 0 };
-            let cursorColor = 'purple';
+<!-- S5 POSITIONS -->
+<section id="s5">
+  <div class="s5-tp">
+    <h2 class="s5-ttl">Open <span class="ol">Positions</span></h2>
+    <div class="s5-sb">Pick your weapon. Choose where you want to make chaos.</div>
+  </div>
+  <div class="plist">
+    <div class="pi">
+      <div class="pleft">
+        <div class="pic">🎨</div>
+        <div>
+          <div class="pn">Creative Team</div>
+          <div class="pj">Design • Branding • Visuals</div>
+        </div>
+      </div>
+      <a href="https://tally.so/r/LZaYWj" target="_blank" class="papply">Apply</a>
+    </div>
+    <div class="pi">
+      <div class="pleft">
+        <div class="pic">🔍</div>
+        <div>
+          <div class="pn">Research Team</div>
+          <div class="pj">Opportunities • Analysis • Curation</div>
+        </div>
+      </div>
+      <a href="https://tally.so/r/Xx8Mge" target="_blank" class="papply">Apply</a>
+    </div>
+    <div class="pi">
+      <div class="pleft">
+        <div class="pic">✍️</div>
+        <div>
+          <div class="pn">Content Creators</div>
+          <div class="pj">Writing • Storytelling • Social</div>
+        </div>
+      </div>
+      <a href="https://tally.so/r/dW8DpD" target="_blank" class="papply">Apply</a>
+    </div>
+    <div class="pi">
+      <div class="pleft">
+        <div class="pic">💻</div>
+        <div>
+          <div class="pn">Web Development</div>
+          <div class="pj">Frontend • Backend • Full Stack</div>
+        </div>
+      </div>
+      <a href="https://tally.so/r/VLbMdN" target="_blank" class="papply">Apply</a>
+    </div>
+    <div class="pi">
+      <div class="pleft">
+        <div class="pic">🤝</div>
+        <div>
+          <div class="pn">Outreach & Partnerships</div>
+          <div class="pj">Connections • Growth • Relations</div>
+        </div>
+      </div>
+      <a href="https://tally.so/r/rjJdpp" target="_blank" class="papply">Apply</a>
+    </div>
+    <div class="pi">
+      <div class="pleft">
+        <div class="pic">🎤</div>
+        <div>
+          <div class="pn">Events & Workshops</div>
+          <div class="pj">Planning • Execution • Community</div>
+        </div>
+      </div>
+      <a href="https://tally.so/r/Zj1zgA" target="_blank" class="papply">Apply</a>
+    </div>
+    <div class="pi">
+      <div class="pleft">
+        <div class="pic">📣</div>
+        <div>
+          <div class="pn">Marketing & Social Media</div>
+          <div class="pj">Growth • Voice • Community</div>
+        </div>
+      </div>
+      <a href="https://tally.so/r/NpbJgN" target="_blank" class="papply">Apply</a>
+    </div>
+  </div>
+  <div class="avg">Average team member impact: <em>Changes lives</em></div>
+</section>
 
-            document.addEventListener('mousemove', (e) => {
-                cursorPos = { x: e.clientX, y: e.clientY };
-                customCursor.style.left = `${cursorPos.x}px`;
-                customCursor.style.top = `${cursorPos.y}px`;
+<!-- S6 REQUIREMENTS -->
+<section id="s6">
+  <div class="s6-in">
+    <div>
+      <div class="rlbl">What We Need</div>
+      <h3 class="rttl">The <span class="blk">Rules</span> Of Chaos</h3>
+      <p class="rfine">This isn't LinkedIn. We know you're 17. That's kind of the point. We're looking for <span>real people</span> with <span>real passion</span> and <span>real commitment.</span></p>
+    </div>
+    <div class="rright">
+      <div class="ritem">
+        <div class="rdash"></div>
+        <div class="rtxt">Be Creative</div>
+      </div>
+      <div class="ritem">
+        <div class="rdash"></div>
+        <div class="rtxt">Be Committed</div>
+      </div>
+      <div class="ritem">
+        <div class="rdash"></div>
+        <div class="rtxt">Be Nice</div>
+      </div>
+      <div class="ritem">
+        <div class="rdash"></div>
+        <div class="rtxt">Be Willing to Learn</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-                const target = e.target;
-                const isInteractive = target.closest('button, a, input, textarea, [role="button"]');
-                const newColor = isInteractive ? 'yellow' : 'purple';
-                
-                if (newColor !== cursorColor) {
-                    customCursor.classList.remove(cursorColor);
-                    customCursor.classList.add(newColor);
-                    cursorColor = newColor;
-                }
-            });
+<!-- S7 SIDE EFFECTS -->
+<section id="s7">
+  <div class="s7-deco">SIDE EFFECTS</div>
+  <div class="s7-in">
+    <div class="s7-pre">Disclaimer</div>
+    <h3 class="s7-ttl">Side <span class="y">Effects</span></h3>
+    <div class="fxlist">
+      <div class="fxi">
+        <span class="fxw">⚠️</span>
+        <span class="fxt">May cause sudden bursts of productivity and purpose</span>
+      </div>
+      <div class="fxi">
+        <span class="fxw">⚠️</span>
+        <span class="fxt">Risk of becoming obsessed with making real change</span>
+      </div>
+      <div class="fxi">
+        <span class="fxw">⚠️</span>
+        <span class="fxt">Likely to develop deep friendships with teammates</span>
+      </div>
+      <div class="fxi">
+        <span class="fxw">⚠️</span>
+        <span class="fxt">Possible side effect: Changing the world</span>
+      </div>
+    </div>
+  </div>
+</section>
 
-            document.addEventListener('mouseleave', () => {
-                customCursor.style.opacity = '0';
-            });
+<!-- S8 CINEMATIC -->
+<section id="s8">
+  <div class="s8-ln"></div>
+  <h2 class="s8-big">Ready to <span class="not">Make</span> <span class="vol">Chaos?</span></h2>
+  <p class="s8-sub">Join a community of students who act, grow, and support each other. <em>This is your space to thrive.</em></p>
+</section>
 
-            document.addEventListener('mouseenter', () => {
-                customCursor.style.opacity = '1';
-            });
+<!-- S9 CTA -->
+<section id="s9">
+  <div class="s9-blur"></div>
+  <div class="s9-in">
+    <div class="s9-so">Final Call</div>
+    <h2 class="s9-ttl">Let's Build <span class="y">Something</span></h2>
+    <p class="s9-sub">No commitment required. Start your journey today. Apply now and let's change how students see their future.</p>
+    <div class="s9-btn">
+      <button class="btn-c" onclick="openModal('apply')">Apply Now <span class="ar">→</span></button>
+    </div>
+  </div>
+</section>
 
-            // Sticky Navbar
-            const navbar = document.getElementById('navbar');
-            let lastScrollY = 0;
-            let isNavbarRounded = false;
+<!-- SOCIAL CONNECT BAR -->
+<div class="social-bar">
+  <div style="max-width:1200px;margin:0 auto;display:flex;justify-content:center;gap:2rem;flex-wrap:wrap">
+    <a href="https://www.facebook.com/dear.future.luminary" target="_blank" style="text-decoration:none;display:flex;align-items:center;gap:.5rem"><i class="fab fa-facebook"></i> <span style="font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;display:none" class="social-label">Facebook</span></a>
+    <a href="https://www.youtube.com/@malak_luminary" target="_blank" style="text-decoration:none;display:flex;align-items:center;gap:.5rem"><i class="fab fa-youtube"></i> <span style="font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;display:none" class="social-label">YouTube</span></a>
+    <a href="https://www.instagram.com/dear.future.luminary" target="_blank" style="text-decoration:none;display:flex;align-items:center;gap:.5rem"><i class="fab fa-instagram"></i> <span style="font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;display:none" class="social-label">Instagram</span></a>
+    <a href="mailto:contact@dearfutureluminary.com" style="text-decoration:none;display:flex;align-items:center;gap:.5rem"><i class="fas fa-envelope"></i> <span style="font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;display:none" class="social-label">Email</span></a>
+  </div>
+</div>
 
-            window.addEventListener('scroll', () => {
-                lastScrollY = window.scrollY;
-                const shouldRound = window.scrollY > 50;
+<!-- FOOTER -->
+<footer>
+  © 2025 Dear Future Luminary. Built with care for the future generation.
+</footer>
 
-                if (shouldRound && !isNavbarRounded) {
-                    navbar.classList.add('top-4', 'left-4', 'right-4', 'bg-white/95', 'backdrop-blur-xl', 'shadow-xl', 'border', 'border-gray-100', 'rounded-2xl');
-                    navbar.style.maxWidth = 'calc(100% - 32px)';
-                    navbar.style.margin = '0 auto';
-                    navbar.classList.remove('rounded-none');
-                    isNavbarRounded = true;
-                } else if (!shouldRound && isNavbarRounded) {
-                    navbar.classList.remove('top-4', 'left-4', 'right-4', 'bg-white/95', 'backdrop-blur-xl', 'shadow-xl', 'border', 'border-gray-100', 'rounded-2xl');
-                    navbar.style.maxWidth = '';
-                    navbar.style.margin = '';
-                    navbar.classList.add('rounded-none');
-                    isNavbarRounded = false;
-                }
-            });
+<!-- MODALS -->
+<div id="applyOv" class="ov">
+  <div class="md">
+    <div class="md-h">
+      <h3>Apply Now</h3>
+      <button class="md-x" onclick="closeModal('apply')">✕</button>
+    </div>
+    <div id="applyForm">
+      <p class="md-p">Choose your role and apply through our form:</p>
+      <div class="md-f" style="display:flex;flex-direction:column;gap:.8rem">
+        <a href="https://tally.so/r/NpbJgN" target="_blank" style="background:var(--Y);color:var(--INK);padding:.8rem;border-radius:.6rem;text-align:center;text-decoration:none;font-family:'Archivo Black',sans-serif;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;transition:transform .2s" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">Marketing & Social Media</a>
+        <a href="https://tally.so/r/Zj1zgA" target="_blank" style="background:var(--Y);color:var(--INK);padding:.8rem;border-radius:.6rem;text-align:center;text-decoration:none;font-family:'Archivo Black',sans-serif;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;transition:transform .2s" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">Events & Workshops</a>
+        <a href="https://tally.so/r/rjJdpp" target="_blank" style="background:var(--Y);color:var(--INK);padding:.8rem;border-radius:.6rem;text-align:center;text-decoration:none;font-family:'Archivo Black',sans-serif;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;transition:transform .2s" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">Outreach & Partnerships</a>
+        <a href="https://tally.so/r/VLbMdN" target="_blank" style="background:var(--Y);color:var(--INK);padding:.8rem;border-radius:.6rem;text-align:center;text-decoration:none;font-family:'Archivo Black',sans-serif;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;transition:transform .2s" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">Web Developers</a>
+        <a href="https://tally.so/r/dW8DpD" target="_blank" style="background:var(--Y);color:var(--INK);padding:.8rem;border-radius:.6rem;text-align:center;text-decoration:none;font-family:'Archivo Black',sans-serif;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;transition:transform .2s" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">Content Creators</a>
+        <a href="https://tally.so/r/LZaYWj" target="_blank" style="background:var(--Y);color:var(--INK);padding:.8rem;border-radius:.6rem;text-align:center;text-decoration:none;font-family:'Archivo Black',sans-serif;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;transition:transform .2s" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">Creative Team</a>
+        <a href="https://tally.so/r/Xx8Mge" target="_blank" style="background:var(--Y);color:var(--INK);padding:.8rem;border-radius:.6rem;text-align:center;text-decoration:none;font-family:'Archivo Black',sans-serif;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;transition:transform .2s" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">Research Team</a>
+      </div>
+    </div>
+    <div id="applySucc" class="succ">
+      <div class="succ-ic">✓</div>
+      <div class="succ-h">Application Submitted!</div>
+      <div class="succ-p">Thanks for applying. We'll review your submission and get back to you soon.</div>
+    </div>
+  </div>
+</div>
 
-            // Mobile Menu Toggle
-            window.toggleMobileMenu = () => {
-                const mobileMenu = document.getElementById('mobile-menu');
-                const menuIcon = document.getElementById('menu-icon');
-                
-                const isHidden = mobileMenu.classList.contains('hidden');
-                
-                if (isHidden) {
-                    mobileMenu.classList.remove('hidden');
-                    mobileMenu.classList.add('flex', 'flex-col');
-                    menuIcon.setAttribute('data-lucide', 'x');
-                } else {
-                    mobileMenu.classList.add('hidden');
-                    mobileMenu.classList.remove('flex', 'flex-col');
-                    menuIcon.setAttribute('data-lucide', 'menu');
-                }
-                
-                if (typeof lucide !== 'undefined') {
-                    lucide.createIcons();
-                }
-            };
+<div id="sponsorOv" class="ov">
+  <div class="md">
+    <div class="md-h">
+      <h3>Sponsor Our Mission</h3>
+      <button class="md-x" onclick="closeModal('sponsor')">✕</button>
+    </div>
+    <div id="sponsorForm">
+      <p class="md-p">Help us reach more students. Every contribution makes a difference.</p>
+      <div class="md-f">
+        <label>Your Name</label>
+        <input type="text" placeholder="Full name">
+        <label>Email</label>
+        <input type="email" placeholder="your@email.com">
+        <label>Message</label>
+        <textarea placeholder="Tell us why you want to support DFL..."></textarea>
+        <button class="md-btn" onclick="doSubmit('sponsor')">Send Support</button>
+      </div>
+    </div>
+    <div id="sponsorSucc" class="succ">
+      <div class="succ-ic">❤️</div>
+      <div class="succ-h">Thank You!</div>
+      <div class="succ-p">Your support means everything. We'll be in touch soon.</div>
+    </div>
+  </div>
+</div>
 
-            // Close mobile menu when clicking on a link
-            const mobileMenuLinks = document.querySelectorAll('#mobile-menu a');
-            mobileMenuLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    document.getElementById('mobile-menu').classList.add('hidden');
-                    document.getElementById('menu-icon').setAttribute('data-lucide', 'menu');
-                    if (typeof lucide !== 'undefined') {
-                        lucide.createIcons();
-                    }
-                });
-            });
+<script>
+// CURSOR
+const cur=document.getElementById('cur'),cur2=document.getElementById('cur2');
+document.addEventListener('mousemove',e=>{cur.style.left=e.clientX+'px';cur.style.top=e.clientY+'px';cur2.style.left=e.clientX+'px';cur2.style.top=e.clientY+'px'});
+document.addEventListener('mouseenter',()=>{cur.style.opacity='1';cur2.style.opacity='1'});
+document.addEventListener('mouseleave',()=>{cur.style.opacity='0';cur2.style.opacity='0'});
 
-            // Intersection Observer for Reveal Animations
-            const revealObserverOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
+// SCROLL ANIMATIONS
+const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('on')})},{threshold:.1});
+document.querySelectorAll('.tr,.pi,.rt,.ritem,.fxi,.s8-ln').forEach(e=>obs.observe(e));
 
-            const revealObserver = new IntersectionObserver((entries) => {
-                entries.forEach((entry, index) => {
-                    if (entry.isIntersecting) {
-                        setTimeout(() => {
-                            entry.target.classList.add('reveal-visible');
-                        }, index * 50);
-                        revealObserver.unobserve(entry.target);
-                    }
-                });
-            }, revealObserverOptions);
-
-            document.querySelectorAll('section, .reveal-item').forEach((el) => {
-                el.classList.add('reveal-hidden');
-                revealObserver.observe(el);
-            });
-
-            // Close modal on backdrop click
-            document.getElementById('applyModal').addEventListener('click', (e) => {
-                if (e.target === document.getElementById('applyModal')) {
-                    document.getElementById('applyModal').classList.add('hidden');
-                    document.getElementById('applyModal').classList.remove('flex');
-                    document.body.style.overflow = 'auto';
-                }
-            });
-
-            // Close modal on Escape key
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape') {
-                    const modal = document.getElementById('applyModal');
-                    if (!modal.classList.contains('hidden')) {
-                        modal.classList.add('hidden');
-                        modal.classList.remove('flex');
-                        document.body.style.overflow = 'auto';
-                    }
-                }
-            });
-
-            // Initialize Lucide Icons
-            if (typeof lucide !== 'undefined') {
-                lucide.createIcons();
-            }
-        });
-    </script>
+// MODAL FUNCTIONS
+function openModal(type){
+  if(type==='apply'){
+    document.getElementById('applyOv').classList.add('open');
+    document.getElementById('applyForm').style.display='block';
+    document.getElementById('applySucc').style.display='none';
+  } else {
+    document.getElementById('sponsorOv').classList.add('open');
+    document.getElementById('sponsorForm').style.display='block';
+    document.getElementById('sponsorSucc').style.display='none';
+  }
+  document.body.style.overflow='hidden';
+}
+function closeModal(type){
+  document.getElementById(type==='apply'?'applyOv':'sponsorOv').classList.remove('open');
+  document.body.style.overflow='';
+}
+function doSubmit(type){
+  document.getElementById(type+'Form').style.display='none';
+  document.getElementById(type+'Succ').style.display='block';
+}
+document.querySelectorAll('.ov').forEach(ov=>{
+  ov.addEventListener('click',e=>{if(e.target===ov){ov.classList.remove('open');document.body.style.overflow=''}});
+});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeModal('apply');closeModal('sponsor')}});
+</script>
 </body>
 </html>
