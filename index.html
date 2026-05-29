@@ -5,602 +5,323 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dear Future Luminary — We're Hiring</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;700;900&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         :root {
             --p: #a488f4;
             --y: #facc15;
             --b: #1e3a8a;
-            --n: #e9ecef;
+            --n: #f8f9fa;
             --wh: #ffffff;
-            --noise: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            --slack-purple: #4a154b;
+            --slack-blue: #1264a3;
+            --slack-green: #2eb67d;
+            --slack-red: #e01e5a;
+            --text-main: #1d1d1d;
+            --text-sub: #454545;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            cursor: none;
         }
 
         body {
             background-color: var(--wh);
-            color: var(--b);
+            color: var(--text-main);
             font-family: 'Plus Jakarta Sans', sans-serif;
+            line-height: 1.5;
             overflow-x: hidden;
-            line-height: 1.4;
-        }
-
-        /* ── CUSTOM CURSOR ── */
-        #cursor {
-            position: fixed;
-            width: 12px;
-            height: 12px;
-            background: var(--b);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 10000;
-            mix-blend-mode: difference;
-            transition: transform 0.1s ease;
-        }
-        #cursor-follower {
-            position: fixed;
-            width: 40px;
-            height: 40px;
-            border: 1px solid var(--p);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9999;
-            transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        /* ── NOISE OVERLAY ── */
-        .noise-bg {
-            position: fixed;
-            inset: 0;
-            z-index: 9998;
-            opacity: 0.04;
-            pointer-events: none;
-            background-image: var(--noise);
         }
 
         /* ── NAVIGATION ── */
         nav {
-            position: fixed;
+            position: sticky;
             top: 0;
             width: 100%;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
             z-index: 1000;
-            padding: 1.5rem 3rem;
+            padding: 1rem 5vw;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            mix-blend-mode: exclusion;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
         }
         .logo {
-            font-family: 'Unbounded', sans-serif;
-            font-weight: 900;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--wh);
+            font-weight: 800;
+            font-size: 1.2rem;
+            color: var(--b);
             text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
         .logo b { color: var(--p); }
         .nav-links {
             display: flex;
             gap: 2rem;
+            align-items: center;
         }
         .nav-links a {
             text-decoration: none;
-            color: var(--wh);
-            font-family: 'Space Mono', monospace;
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: color 0.3s;
+            color: var(--text-main);
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: color 0.2s;
         }
-        .nav-links a:hover { color: var(--y); }
+        .nav-links a:hover { color: var(--p); }
+        .nav-cta {
+            background: var(--p);
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 4px;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+        }
 
         /* ── HERO SECTION ── */
         .hero {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 0 5vw;
+            padding: 8rem 5vw 4rem;
+            text-align: center;
+            background: linear-gradient(180deg, #fff 0%, #f6efff 100%);
             position: relative;
-            overflow: hidden;
-            background: var(--b);
-        }
-        .hero-bg-elements {
-            position: absolute;
-            inset: 0;
-            overflow: hidden;
-            pointer-events: none;
-        }
-        .orb {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.5;
-            animation: float 20s infinite alternate;
-        }
-        .orb-1 { width: 40vw; height: 40vw; background: var(--p); top: -10%; right: -5%; animation-delay: 0s; }
-        .orb-2 { width: 30vw; height: 30vw; background: var(--y); bottom: -5%; left: -5%; animation-delay: -5s; }
-        
-        @keyframes float {
-            0% { transform: translate(0, 0) scale(1); }
-            100% { transform: translate(50px, 100px) scale(1.1); }
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 10;
         }
         .hero-label {
-            font-family: 'Space Mono', monospace;
             color: var(--p);
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
             font-size: 0.8rem;
-            margin-bottom: 1rem;
-            display: block;
-            transform: rotate(-2deg);
-            width: fit-content;
-        }
-        .hero-title {
-            font-family: 'Unbounded', sans-serif;
-            font-weight: 900;
-            font-size: clamp(3.5rem, 10vw, 10rem);
-            line-height: 0.85;
-            color: var(--wh);
-            letter-spacing: -0.05em;
-            text-transform: uppercase;
-        }
-        .hero-title span {
-            display: block;
-        }
-        .hero-title .outline {
-            -webkit-text-stroke: 1.5px var(--wh);
-            color: transparent;
-        }
-        .hero-title .highlight {
-            color: var(--y);
-            position: relative;
-            display: inline-block;
-        }
-        .hero-title .highlight::after {
-            content: '';
-            position: absolute;
-            bottom: 10%;
-            left: 0;
-            width: 100%;
-            height: 20%;
-            background: var(--p);
-            z-index: -1;
-            transform: skewX(-15deg);
-        }
-
-        .hero-bottom {
-            margin-top: 4rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-        }
-        .hero-desc {
-            max-width: 400px;
-            color: rgba(255,255,255,0.7);
-            font-size: 1.1rem;
-            font-weight: 500;
-        }
-        .hero-desc strong { color: var(--wh); }
-        
-        .hero-cta {
-            display: flex;
-            gap: 1.5rem;
-        }
-        .btn-portal {
-            padding: 1.5rem 3rem;
-            background: var(--y);
-            color: var(--b);
-            font-family: 'Unbounded', sans-serif;
-            font-weight: 900;
-            text-decoration: none;
-            text-transform: uppercase;
-            font-size: 1rem;
-            border-radius: 0;
-            transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
-        .btn-portal:hover {
-            transform: translate(-5px, -5px);
-            box-shadow: 10px 10px 0 var(--p);
-        }
-
-        /* ── MARQUEE ── */
-        .marquee-section {
-            background: var(--y);
-            padding: 1.5rem 0;
-            transform: rotate(-1deg) scale(1.1);
-            margin: 4rem 0;
-            z-index: 20;
-            position: relative;
-            border-top: 2px solid var(--b);
-            border-bottom: 2px solid var(--b);
-        }
-        .marquee-content {
-            display: flex;
-            white-space: nowrap;
-            animation: marquee 40s linear infinite;
-        }
-        .marquee-item {
-            font-family: 'Unbounded', sans-serif;
-            font-weight: 900;
-            font-size: 1.5rem;
-            text-transform: uppercase;
-            color: var(--b);
-            padding: 0 2rem;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-        .marquee-dot { width: 12px; height: 12px; background: var(--b); border-radius: 50%; }
-        @keyframes marquee {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-
-        /* ── STORY SECTION ── */
-        .story {
-            padding: 10vw 5vw;
-            background: var(--wh);
-            position: relative;
-        }
-        .story-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 5vw;
-        }
-        .story-large-num {
-            font-family: 'Unbounded', sans-serif;
-            font-size: 25vw;
-            font-weight: 900;
-            color: var(--n);
-            line-height: 0.8;
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: 0;
-            opacity: 0.5;
-            pointer-events: none;
-        }
-        .story-content {
-            position: relative;
-            z-index: 1;
-        }
-        .story-title {
-            font-family: 'Unbounded', sans-serif;
-            font-size: 4rem;
-            font-weight: 900;
-            margin-bottom: 3rem;
-            color: var(--b);
-        }
-        .story-line {
-            font-size: 1.8rem;
             margin-bottom: 1.5rem;
-            color: rgba(30, 58, 138, 0.4);
-            transition: color 0.3s;
+            display: block;
         }
-        .story-line:hover { color: var(--b); }
-        .story-line em { color: var(--p); font-style: normal; font-weight: 700; }
-        .story-line.active { color: var(--b); font-weight: 700; }
-
-        .story-punch {
-            margin-top: 5rem;
-            font-family: 'Unbounded', sans-serif;
-            font-size: 3rem;
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-weight: 800;
             line-height: 1.1;
-        }
-        .story-punch .yp { background: var(--y); padding: 0 0.2em; }
-        .story-punch .pp { color: var(--p); }
-
-        /* ── WHAT WE DO (SCENES) ── */
-        .scenes {
-            background: var(--b);
-            color: var(--wh);
-            padding: 10vw 0;
-        }
-        .scene {
-            min-height: 60vh;
-            display: flex;
-            align-items: center;
-            padding: 5vw;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            position: relative;
-            transition: background 0.5s;
-        }
-        .scene:hover { background: rgba(164, 136, 244, 0.05); }
-        .scene-num {
-            font-family: 'Unbounded', sans-serif;
-            font-size: 8rem;
-            font-weight: 900;
-            color: rgba(255,255,255,0.05);
-            position: absolute;
-            left: 2vw;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-        .scene-content {
-            margin-left: 15vw;
-            max-width: 800px;
-        }
-        .scene-title {
-            font-family: 'Unbounded', sans-serif;
-            font-size: 2.5rem;
             margin-bottom: 1.5rem;
-            color: var(--y);
-        }
-        .scene-desc {
-            font-size: 1.2rem;
-            color: rgba(255,255,255,0.6);
-            line-height: 1.8;
-        }
-
-        /* ── POSITIONS (NO CARDS) ── */
-        .positions {
-            padding: 10vw 5vw;
-            background: var(--wh);
-        }
-        .pos-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            margin-bottom: 6rem;
-        }
-        .pos-title {
-            font-family: 'Unbounded', sans-serif;
-            font-size: clamp(3rem, 8vw, 8rem);
-            line-height: 0.9;
-        }
-        .pos-title .yh { background: var(--y); padding: 0 0.2em; }
-        
-        .pos-list {
-            display: flex;
-            flex-direction: column;
-        }
-        .pos-item {
-            display: grid;
-            grid-template-columns: 100px 1fr auto;
-            align-items: center;
-            padding: 3rem 0;
-            border-top: 1px solid var(--n);
-            text-decoration: none;
             color: var(--b);
-            transition: all 0.4s;
         }
-        .pos-item:last-child { border-bottom: 1px solid var(--n); }
-        .pos-item:hover {
-            padding-left: 2rem;
-            background: rgba(164, 136, 244, 0.03);
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-sub);
+            max-width: 700px;
+            margin: 0 auto 2.5rem;
         }
-        .pos-index {
-            font-family: 'Unbounded', sans-serif;
-            font-size: 1.5rem;
-            color: var(--n);
-            transition: color 0.3s;
-        }
-        .pos-item:hover .pos-index { color: var(--p); }
-        .pos-info h3 {
-            font-family: 'Unbounded', sans-serif;
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-        }
-        .pos-info p {
-            font-family: 'Space Mono', monospace;
-            font-size: 0.9rem;
-            color: rgba(30, 58, 138, 0.5);
-        }
-        .pos-link {
-            font-family: 'Unbounded', sans-serif;
-            font-weight: 900;
-            text-transform: uppercase;
-            font-size: 1rem;
-            color: var(--p);
-            opacity: 0;
-            transform: translateX(-20px);
-            transition: all 0.3s;
-        }
-        .pos-item:hover .pos-link {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        /* ── RULES ── */
-        .rules {
-            padding: 10vw 5vw;
-            background: var(--n);
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 5vw;
-        }
-        .rules-title {
-            font-family: 'Unbounded', sans-serif;
-            font-size: 4rem;
-            line-height: 1;
-        }
-        .rules-list {
-            display: flex;
-            flex-direction: column;
-            gap: 3rem;
-        }
-        .rule-item {
-            border-left: 4px solid var(--p);
-            padding-left: 2rem;
-        }
-        .rule-h {
-            font-family: 'Unbounded', sans-serif;
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
-        .rule-p {
-            font-size: 1.1rem;
-            color: rgba(30, 58, 138, 0.6);
-        }
-
-        /* ── FINAL CTA ── */
-        .final-cta {
-            padding: 15vw 5vw;
-            background: var(--b);
-            color: var(--wh);
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        .final-cta-h {
-            font-family: 'Unbounded', sans-serif;
-            font-size: clamp(3rem, 10vw, 10rem);
-            line-height: 0.85;
-            margin-bottom: 4rem;
-        }
-        .final-cta-h .yh { color: var(--y); }
-        .final-cta-body {
-            max-width: 800px;
-            margin: 0 auto 4rem;
-            font-size: 1.5rem;
-            color: rgba(255,255,255,0.7);
-        }
-        .final-btns {
+        .hero-btns {
             display: flex;
             justify-content: center;
-            gap: 2rem;
+            gap: 1rem;
         }
-        .btn-large {
-            padding: 2rem 4rem;
-            font-family: 'Unbounded', sans-serif;
-            font-weight: 900;
-            font-size: 1.2rem;
-            text-transform: uppercase;
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 4px;
+            font-weight: 700;
             text-decoration: none;
-            transition: all 0.3s;
+            font-size: 1rem;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
         }
-        .btn-y { background: var(--y); color: var(--b); }
-        .btn-outline { border: 2px solid var(--wh); color: var(--wh); }
-        .btn-large:hover { transform: scale(1.05) rotate(2deg); }
+        .btn-primary { background: var(--p); color: white; border: 2px solid var(--p); }
+        .btn-primary:hover { background: #8a6de0; border-color: #8a6de0; }
+        .btn-secondary { background: white; color: var(--p); border: 2px solid var(--p); }
+        .btn-secondary:hover { background: #f6efff; }
+
+        /* ── LOGO CAROUSEL ── */
+        .carousel {
+            padding: 3rem 5vw;
+            background: white;
+            text-align: center;
+        }
+        .carousel-text {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--text-sub);
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+        }
+        .carousel-logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 4rem;
+            flex-wrap: wrap;
+            opacity: 0.6;
+        }
+        .carousel-logos i { font-size: 2rem; color: var(--b); }
+
+        /* ── CONTENT SECTIONS ── */
+        section {
+            padding: 6rem 5vw;
+        }
+        .section-grid {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        .section-content h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            color: var(--b);
+        }
+        .section-content p {
+            font-size: 1.1rem;
+            color: var(--text-sub);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        .section-image {
+            background: var(--n);
+            border-radius: 12px;
+            aspect-ratio: 16/10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+        }
+        .section-image::after {
+            content: 'DFL';
+            font-weight: 900;
+            font-size: 5rem;
+            color: rgba(0,0,0,0.03);
+        }
+
+        /* ── ROLES (LIST VIEW) ── */
+        .roles-section {
+            background: #f6f9fc;
+        }
+        .roles-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        .roles-header h2 { font-size: 2.5rem; font-weight: 800; color: var(--b); }
+        .roles-list {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .role-item {
+            background: white;
+            padding: 1.5rem 2rem;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            text-decoration: none;
+            color: var(--text-main);
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        .role-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            border-color: var(--p);
+        }
+        .role-info h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.2rem; }
+        .role-info p { font-size: 0.9rem; color: var(--text-sub); }
+        .role-arrow { color: var(--p); font-weight: 700; }
+
+        /* ── RULES ── */
+        .rules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1100px;
+            margin: 4rem auto 0;
+        }
+        .rule-card {
+            padding: 2.5rem;
+            background: white;
+            border-radius: 12px;
+            border-top: 4px solid var(--p);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+        }
+        .rule-card h3 { font-size: 1.4rem; margin-bottom: 1rem; color: var(--b); }
+        .rule-card p { color: var(--text-sub); font-size: 1rem; }
 
         /* ── FOOTER ── */
         footer {
-            padding: 5vw;
             background: var(--wh);
-            border-top: 1px solid var(--n);
+            padding: 4rem 5vw 2rem;
+            border-top: 1px solid rgba(0,0,0,0.05);
         }
         .footer-grid {
+            max-width: 1100px;
+            margin: 0 auto;
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 5vw;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 4rem;
         }
-        .f-brand {
-            font-family: 'Unbounded', sans-serif;
-            font-weight: 900;
-            font-size: 2rem;
-        }
-        .f-sdgs {
-            display: flex;
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-        .f-sdg {
-            font-family: 'Space Mono', monospace;
-            font-size: 0.7rem;
-            padding: 0.5rem 1rem;
-            background: var(--n);
-            border-radius: 2rem;
-        }
-        .f-contact h4 {
-            font-family: 'Unbounded', sans-serif;
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-        }
-        .f-form {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-        .f-input {
-            padding: 1rem;
-            border: 1px solid var(--n);
-            font-family: inherit;
-            font-size: 1rem;
-            outline: none;
-        }
-        .f-input:focus { border-color: var(--p); }
-        .f-submit {
-            padding: 1rem;
-            background: var(--b);
-            color: var(--wh);
-            border: none;
-            font-family: 'Unbounded', sans-serif;
-            font-weight: 700;
-            text-transform: uppercase;
-        }
+        .footer-brand h2 { font-weight: 800; margin-bottom: 1rem; color: var(--b); }
+        .footer-brand p { color: var(--text-sub); margin-bottom: 2rem; }
+        .footer-links h4 { font-weight: 800; margin-bottom: 1.5rem; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; }
+        .footer-links ul { list-style: none; }
+        .footer-links li { margin-bottom: 0.8rem; }
+        .footer-links a { text-decoration: none; color: var(--text-sub); font-size: 0.9rem; transition: color 0.2s; }
+        .footer-links a:hover { color: var(--p); }
 
-        .f-bottom {
-            margin-top: 5vw;
-            padding-top: 2vw;
-            border-top: 1px solid var(--n);
+        .footer-bottom {
+            max-width: 1100px;
+            margin: 4rem auto 0;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(0,0,0,0.05);
             display: flex;
             justify-content: space-between;
-            font-size: 0.8rem;
-            color: rgba(30, 58, 138, 0.5);
-        }
-        .f-bottom a { color: var(--p); text-decoration: none; }
-
-        /* ── CONNECT ── */
-        .connect-float {
-            position: fixed;
-            right: 3rem;
-            bottom: 3rem;
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-            z-index: 100;
-        }
-        .connect-float a {
-            width: 50px;
-            height: 50px;
-            background: var(--wh);
-            border: 1px solid var(--b);
-            display: flex;
             align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            color: var(--b);
-            font-size: 1.2rem;
-            transition: all 0.3s;
+            font-size: 0.8rem;
+            color: var(--text-sub);
         }
-        .connect-float a:hover {
-            background: var(--p);
-            color: var(--wh);
-            transform: translateX(-10px);
+        .footer-bottom a { color: var(--p); text-decoration: none; }
+
+        /* ── FORM ── */
+        .contact-form {
+            background: #f6f9fc;
+            padding: 2rem;
+            border-radius: 8px;
+        }
+        .form-group { margin-bottom: 1rem; }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid rgba(0,0,0,0.1);
+            border-radius: 4px;
+            font-family: inherit;
+        }
+        .form-btn {
+            width: 100%;
+            padding: 0.8rem;
+            background: var(--b);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-weight: 700;
+            cursor: pointer;
         }
 
         /* ── MOBILE ── */
         @media (max-width: 768px) {
-            nav { padding: 1rem 1.5rem; }
-            .hero-title { font-size: 15vw; }
-            .hero-bottom { flex-direction: column; align-items: flex-start; gap: 2rem; }
-            .story-grid, .rules, .footer-grid { grid-template-columns: 1fr; }
-            .pos-item { grid-template-columns: 50px 1fr; }
-            .pos-link { display: none; }
-            .scene-num { font-size: 4rem; top: 10%; }
-            .scene-content { margin-left: 0; margin-top: 4rem; }
+            .section-grid { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 2.5rem; }
+            .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .nav-links { display: none; }
         }
     </style>
 </head>
 <body>
-
-    <div id="cursor"></div>
-    <div id="cursor-follower"></div>
-    <div class="noise-bg"></div>
 
     <nav>
         <a href="#" class="logo">Dear Future <b>Luminary</b></a>
@@ -608,279 +329,160 @@
             <a href="#story">Story</a>
             <a href="#roles">Roles</a>
             <a href="#rules">Rules</a>
-            <a href="https://tally.so/r/Y5JMyz" target="_blank">Support</a>
+            <a href="#contact">Contact</a>
+            <a href="#roles" class="nav-cta">Join Us</a>
         </div>
     </nav>
 
-    <section class="hero">
-        <div class="hero-bg-elements">
-            <div class="orb orb-1"></div>
-            <div class="orb orb-2"></div>
+    <header class="hero">
+        <span class="hero-label">We're Hiring</span>
+        <h1>All your people and creative <br>agents working together.</h1>
+        <p>We're building a <strong>youth-led creative movement</strong>. Slack connects your team. Dear Future Luminary multiplies what they can do.</p>
+        <div class="hero-btns">
+            <a href="#roles" class="btn btn-primary">Join The Team →</a>
+            <a href="#story" class="btn btn-secondary">Read The Story</a>
         </div>
-        <div class="hero-content">
-            <span class="hero-label">/ / THE FUTURE IS WATCHING</span>
-            <h1 class="hero-title">
-                <span>WE ARE</span>
-                <span class="outline">HIRING THE</span>
-                <span class="highlight">INSANE</span>
-            </h1>
-            <div class="hero-bottom">
-                <div class="hero-desc">
-                    <p>We're building a <strong>youth-led creative movement</strong>. Not a startup. Not a company. A portal for the ambitious, the builders, and the dreamers.</p>
-                </div>
-                <div class="hero-cta">
-                    <a href="#roles" class="btn-portal">Enter Portal →</a>
-                </div>
-            </div>
-        </div>
-    </section>
+    </header>
 
-    <div class="marquee-section">
-        <div class="marquee-content">
-            <div class="marquee-item">Creative Rebellion <div class="marquee-dot"></div></div>
-            <div class="marquee-item">Digital Universe <div class="marquee-dot"></div></div>
-            <div class="marquee-item">Youth Led <div class="marquee-dot"></div></div>
-            <div class="marquee-item">Identity Driven <div class="marquee-dot"></div></div>
-            <div class="marquee-item">Creative Rebellion <div class="marquee-dot"></div></div>
-            <div class="marquee-item">Digital Universe <div class="marquee-dot"></div></div>
-            <div class="marquee-item">Youth Led <div class="marquee-dot"></div></div>
-            <div class="marquee-item">Identity Driven <div class="marquee-dot"></div></div>
+    <div class="carousel">
+        <p class="carousel-text">Trusted by top teams and ambitious builders</p>
+        <div class="carousel-logos">
+            <i class="fab fa-google"></i>
+            <i class="fab fa-apple"></i>
+            <i class="fab fa-microsoft"></i>
+            <i class="fab fa-amazon"></i>
+            <i class="fab fa-spotify"></i>
+            <i class="fab fa-slack"></i>
         </div>
     </div>
 
-    <section class="story" id="story">
-        <div class="story-large-num">01</div>
-        <div class="story-grid">
-            <div class="story-content">
-                <h2 class="story-title">The Story</h2>
-                <div class="story-lines">
-                    <p class="story-line">This started as a <em>whisper</em> in a crowded room.</p>
-                    <p class="story-line">A realization that the current systems aren't built for us.</p>
-                    <p class="story-line active">They want your <em>compliance</em>, we want your <em>chaos</em>.</p>
-                    <p class="story-line">We're not just looking for volunteers; we're looking for luminaries.</p>
-                </div>
-                <div class="story-punch">
-                    This Is Not Just <span class="yp">Volunteering.</span> <span class="pp">It's a movement.</span>
-                </div>
+    <section id="story">
+        <div class="section-grid">
+            <div class="section-content">
+                <span class="hero-label">The Story</span>
+                <h2>Reimagine what’s possible <br>with youth and creativity.</h2>
+                <p>This started as a <em>whisper</em> in a crowded room. A realization that the current systems aren't built for us. They want your <em>compliance</em>, we want your <em>chaos</em>.</p>
+                <p>We're not just looking for volunteers; we're looking for luminaries. This is not just volunteering. It's a movement.</p>
             </div>
-            <div class="story-visual">
-                <div style="width: 100%; height: 100%; background: var(--n); border: 2px solid var(--b); position: relative; overflow: hidden;">
-                    <div style="position: absolute; top: 20%; left: 10%; font-family: 'Unbounded', sans-serif; font-size: 5vw; color: var(--p); opacity: 0.2; transform: rotate(-15deg);">CREATIVE</div>
-                    <div style="position: absolute; bottom: 20%; right: 10%; font-family: 'Unbounded', sans-serif; font-size: 5vw; color: var(--y); opacity: 0.2; transform: rotate(15deg);">REBELLION</div>
-                </div>
-            </div>
+            <div class="section-image"></div>
         </div>
     </section>
 
-    <section class="scenes">
-        <div class="scene">
-            <div class="scene-num">01</div>
-            <div class="scene-content">
-                <h3 class="scene-title">The Mission</h3>
-                <p class="scene-desc">If you've ever looked at the world and thought: This could be smarter. This could be kinder. This could be more. Then you're probably already one of us.</p>
-            </div>
+    <section class="roles-section" id="roles">
+        <div class="roles-header">
+            <span class="hero-label">Opportunities</span>
+            <h2>Open Roles</h2>
+            <p>Pick a role that excites you. Or multiple. We'll figure it out together.</p>
         </div>
-        <div class="scene">
-            <div class="scene-num">02</div>
-            <div class="scene-content">
-                <h3 class="scene-title">The Value</h3>
-                <p class="scene-desc">You won't get paid in money. You will get paid in skills, connections, real experience, and the kind of stories that actually matter on an application.</p>
-            </div>
-        </div>
-        <div class="scene">
-            <div class="scene-num">03</div>
-            <div class="scene-content">
-                <h3 class="scene-title">The Impact</h3>
-                <p class="scene-desc">No generic filtering, no ATS robots, no algorithm deciding your worth. We read every single application. The team is waiting. The group chat is ready.</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="positions" id="roles">
-        <div class="pos-header">
-            <h2 class="pos-title">Open <span class="yh">Roles</span></h2>
-            <div style="text-align: right">
-                <p style="font-family: 'Space Mono', monospace; font-size: 0.8rem; color: var(--p);">/ / CHOOSE YOUR PATH</p>
-                <p style="max-width: 200px; font-size: 0.9rem; margin-top: 1rem;">Pick a role that excites you. Or multiple. We'll figure it out together.</p>
-            </div>
-        </div>
-
-        <div class="pos-list">
-            <a href="https://tally.so/r/LZaYWj" target="_blank" class="pos-item">
-                <div class="pos-index">01</div>
-                <div class="pos-info">
+        <div class="roles-list">
+            <a href="https://tally.so/r/LZaYWj" target="_blank" class="role-item">
+                <div class="role-info">
                     <h3>Creative Team</h3>
                     <p>Visual identity, graphic design, and aesthetic direction.</p>
                 </div>
-                <div class="pos-link">Apply ↗</div>
+                <div class="role-arrow">Apply ↗</div>
             </a>
-            <a href="https://tally.so/r/Xx8Mge" target="_blank" class="pos-item">
-                <div class="pos-index">02</div>
-                <div class="pos-info">
+            <a href="https://tally.so/r/Xx8Mge" target="_blank" class="role-item">
+                <div class="role-info">
                     <h3>Research Team</h3>
                     <p>Deep dives into youth culture, trends, and data-driven insights.</p>
                 </div>
-                <div class="pos-link">Apply ↗</div>
+                <div class="role-arrow">Apply ↗</div>
             </a>
-            <a href="https://tally.so/r/dW8DpD" target="_blank" class="pos-item">
-                <div class="pos-index">03</div>
-                <div class="pos-info">
+            <a href="https://tally.so/r/dW8DpD" target="_blank" class="role-item">
+                <div class="role-info">
                     <h3>Content Creators</h3>
                     <p>Storytelling, video production, and digital narrative building.</p>
                 </div>
-                <div class="pos-link">Apply ↗</div>
+                <div class="role-arrow">Apply ↗</div>
             </a>
-            <a href="https://tally.so/r/VLbMdN" target="_blank" class="pos-item">
-                <div class="pos-index">04</div>
-                <div class="pos-info">
+            <a href="https://tally.so/r/VLbMdN" target="_blank" class="role-item">
+                <div class="role-info">
                     <h3>Web Development</h3>
                     <p>Building the digital infrastructure of our universe.</p>
                 </div>
-                <div class="pos-link">Apply ↗</div>
+                <div class="role-arrow">Apply ↗</div>
             </a>
-            <a href="https://tally.so/r/rjJdpp" target="_blank" class="pos-item">
-                <div class="pos-index">05</div>
-                <div class="pos-info">
+            <a href="https://tally.so/r/rjJdpp" target="_blank" class="role-item">
+                <div class="role-info">
                     <h3>Outreach & Partnerships</h3>
                     <p>Connecting the movement with the rest of the world.</p>
                 </div>
-                <div class="pos-link">Apply ↗</div>
+                <div class="role-arrow">Apply ↗</div>
             </a>
-            <a href="https://tally.so/r/Zj1zgA" target="_blank" class="pos-item">
-                <div class="pos-index">06</div>
-                <div class="pos-info">
+            <a href="https://tally.so/r/Zj1zgA" target="_blank" class="role-item">
+                <div class="role-info">
                     <h3>Events & Workshops</h3>
                     <p>Creating physical and digital moments of connection.</p>
                 </div>
-                <div class="pos-link">Apply ↗</div>
+                <div class="role-arrow">Apply ↗</div>
             </a>
-            <a href="https://tally.so/r/NpbJgN" target="_blank" class="pos-item">
-                <div class="pos-index">07</div>
-                <div class="pos-info">
+            <a href="https://tally.so/r/NpbJgN" target="_blank" class="role-item">
+                <div class="role-info">
                     <h3>Marketing & Social Media</h3>
                     <p>Amplifying the voice of the future.</p>
                 </div>
-                <div class="pos-link">Apply ↗</div>
+                <div class="role-arrow">Apply ↗</div>
             </a>
         </div>
     </section>
 
-    <section class="rules" id="rules">
-        <div class="rules-content">
-            <h2 class="rules-title">The <br><span style="color: var(--p)">Unwritten</span><br> Rules</h2>
+    <section id="rules">
+        <div class="roles-header">
+            <span class="hero-label">Our Culture</span>
+            <h2>The Unwritten Rules</h2>
         </div>
-        <div class="rules-list">
-            <div class="rule-item">
-                <h3 class="rule-h">01. Be Audacious</h3>
-                <p class="rule-p">We don't do "safe." If your idea doesn't scare you a little, it's probably not big enough.</p>
+        <div class="rules-grid">
+            <div class="rule-card">
+                <h3>01. Be Audacious</h3>
+                <p>We don't do "safe." If your idea doesn't scare you a little, it's probably not big enough.</p>
             </div>
-            <div class="rule-item">
-                <h3 class="rule-h">02. Stay Curious</h3>
-                <p class="rule-p">The moment you think you know everything is the moment you stop growing. Ask the "stupid" questions.</p>
+            <div class="rule-card">
+                <h3>02. Stay Curious</h3>
+                <p>The moment you think you know everything is the moment you stop growing. Ask the "stupid" questions.</p>
             </div>
-            <div class="rule-item">
-                <h3 class="rule-h">03. Build Together</h3>
-                <p class="rule-p">This is a collective. We win as a team, we learn as a team. No egos allowed.</p>
+            <div class="rule-card">
+                <h3>03. Build Together</h3>
+                <p>This is a collective. We win as a team, we learn as a team. No egos allowed.</p>
             </div>
-        </div>
-    </section>
-
-    <section class="final-cta">
-        <h2 class="final-cta-h">Ready to <br><span class="yh">Join?</span></h2>
-        <p class="final-cta-body">Fill out the form and tell us why you're the right kind of insane. Pick a role that excites you. The mission is real.</p>
-        <div class="final-btns">
-            <a href="#roles" class="btn-large btn-y">Join The Team →</a>
-            <a href="#story" class="btn-large btn-outline">Read The Story</a>
         </div>
     </section>
 
-    <footer>
+    <footer id="contact">
         <div class="footer-grid">
-            <div class="f-brand">
-                Dear Future <br> <span style="color: var(--p)">Luminary</span>
-                <p style="font-size: 1rem; margin-top: 1rem; font-family: 'Plus Jakarta Sans'; font-weight: 400; color: rgba(30,58,138,0.5);">"For the future that's watching."</p>
-                <div class="f-sdgs">
-                    <span class="f-sdg">SDG 4</span>
-                    <span class="f-sdg">SDG 8</span>
-                    <span class="f-sdg">SDG 10</span>
-                    <span class="f-sdg">SDG 17</span>
+            <div class="footer-brand">
+                <h2>Dear Future <span style="color: var(--p)">Luminary</span></h2>
+                <p>"For the future that's watching."</p>
+                <div style="display: flex; gap: 1rem; font-size: 1.2rem; color: var(--b);">
+                    <a href="https://www.instagram.com/dear.future.luminary" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.youtube.com/@malak_luminary" target="_blank"><i class="fab fa-youtube"></i></a>
+                    <a href="mailto:contact@dearfutureluminary.com"><i class="fas fa-envelope"></i></a>
                 </div>
             </div>
-            <div class="f-contact">
+            <div class="footer-links">
+                <h4>Movement</h4>
+                <ul>
+                    <li><a href="#story">Our Story</a></li>
+                    <li><a href="#roles">Open Roles</a></li>
+                    <li><a href="#rules">Culture</a></li>
+                    <li><a href="https://tally.so/r/Y5JMyz" target="_blank">Support Us</a></li>
+                </ul>
+            </div>
+            <div class="contact-form">
                 <h4>Get In Touch</h4>
-                <form action="https://formspree.io/f/xqaqankn" method="POST" class="f-form">
-                    <input type="text" name="name" class="f-input" placeholder="Your name" required>
-                    <input type="email" name="email" class="f-input" placeholder="Your email" required>
-                    <textarea name="message" class="f-input" placeholder="Your message" style="height: 100px;" required></textarea>
-                    <button type="submit" class="f-submit">Send Message →</button>
+                <form action="https://formspree.io/f/xqaqankn" method="POST">
+                    <div class="form-group"><input type="text" name="name" placeholder="Your name" required></div>
+                    <div class="form-group"><input type="email" name="email" placeholder="Your email" required></div>
+                    <div class="form-group"><textarea name="message" placeholder="Your message" rows="3" required></textarea></div>
+                    <button type="submit" class="form-btn">Send Message</button>
                 </form>
             </div>
         </div>
-        <div class="f-bottom">
+        <div class="footer-bottom">
             <p>© 2025 Dear Future Luminary. All rights reserved.</p>
             <p>Developed by <a href="https://malakemad2007.github.io/My-portfolio/" target="_blank">Malak Emad</a></p>
         </div>
     </footer>
 
-    <div class="connect-float">
-        <a href="https://www.instagram.com/dear.future.luminary" target="_blank"><i class="fab fa-instagram"></i></a>
-        <a href="https://www.youtube.com/@malak_luminary" target="_blank"><i class="fab fa-youtube"></i></a>
-        <a href="mailto:contact@dearfutureluminary.com"><i class="fas fa-envelope"></i></a>
-    </div>
-
-    <script>
-        // Custom Cursor
-        const cursor = document.getElementById('cursor');
-        const follower = document.getElementById('cursor-follower');
-        
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-            follower.style.left = (e.clientX - 20) + 'px';
-            follower.style.top = (e.clientY - 20) + 'px';
-        });
-
-        document.querySelectorAll('a, button').forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                cursor.style.transform = 'scale(2)';
-                follower.style.transform = 'scale(1.5)';
-                follower.style.background = 'rgba(164, 136, 244, 0.1)';
-            });
-            el.addEventListener('mouseleave', () => {
-                cursor.style.transform = 'scale(1)';
-                follower.style.transform = 'scale(1)';
-                follower.style.background = 'transparent';
-            });
-        });
-
-        // Parallax Effect on Hero
-        document.addEventListener('mousemove', (e) => {
-            const moveX = (e.clientX - window.innerWidth / 2) * 0.01;
-            const moveY = (e.clientY - window.innerHeight / 2) * 0.01;
-            const title = document.querySelector('.hero-title');
-            if(title) title.style.transform = `translate(${moveX}px, ${moveY}px)`;
-        });
-
-        // Smooth scroll reveal
-        const observerOptions = {
-            threshold: 0.1
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('section').forEach(section => {
-            section.style.opacity = '0';
-            section.style.transform = 'translateY(30px)';
-            section.style.transition = 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1)';
-            observer.observe(section);
-        });
-    </script>
 </body>
 </html>
