@@ -3,486 +3,1940 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dear Future Luminary — We're Hiring</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <title>Dear Future Luminary</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="icon" type="image/svg+xml" href="client/public/images/dear.future.luminary.logo.svg.svg">
+    <script src="https://unpkg.com/lucide@latest"></script>
     <style>
+        /* ========== ROOT VARIABLES ========== */
         :root {
-            --p: #a488f4;
-            --y: #facc15;
-            --b: #1e3a8a;
-            --n: #f8f9fa;
-            --wh: #ffffff;
-            --slack-purple: #4a154b;
-            --slack-blue: #1264a3;
-            --slack-green: #2eb67d;
-            --slack-red: #e01e5a;
-            --text-main: #1d1d1d;
-            --text-sub: #454545;
+            --primary: #a488f4;
+            --secondary: #facc15;
+            --dark: #1e3a8a;
+            --white: #ffffff;
+            --light-gray: #f8f9fa;
+            --gray-border: #e5e7eb;
         }
 
+        /* ========== GLOBAL RESET ========== */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        body {
-            background-color: var(--wh);
-            color: var(--text-main);
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            line-height: 1.5;
-            overflow-x: hidden;
+        html {
+            scroll-behavior: smooth;
         }
 
-        /* ── NAVIGATION ── */
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: var(--white);
+            color: #1f2937;
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* ========== CUSTOM CURSOR ========== */
+        * {
+            cursor: none !important;
+        }
+
+        .custom-cursor {
+            position: fixed;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--primary);
+            box-shadow: 0 0 20px rgba(164, 136, 244, 0.5);
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: background-color 0.2s ease, transform 0.2s ease;
+        }
+
+        /* ========== NAVBAR ========== */
         nav {
-            position: sticky;
+            position: fixed;
             top: 0;
-            width: 100%;
+            left: 0;
+            right: 0;
+            z-index: 50;
             background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            padding: 1rem 5vw;
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            padding: 1rem 1.5rem;
+        }
+
+        nav.scrolled {
+            top: 1.5rem;
+            left: 1.5rem;
+            right: 1.5rem;
+            width: calc(100% - 3rem);
+            border-radius: 100px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(164, 136, 244, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            nav.scrolled {
+                top: 1rem;
+                left: 1rem;
+                right: 1rem;
+                width: calc(100% - 2rem);
+            }
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid rgba(0,0,0,0.05);
-        }
-        .logo {
-            font-weight: 800;
-            font-size: 1.2rem;
-            color: var(--b);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        .logo b { color: var(--p); }
-        .nav-links {
-            display: flex;
             gap: 2rem;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            font-weight: 900;
+            font-size: 1.1rem;
+            color: var(--dark);
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .nav-logo img {
+            width: 40px;
+            height: 40px;
+        }
+
+        .nav-logo span {
+            display: none;
+        }
+
+        @media (min-width: 640px) {
+            .nav-logo span {
+                display: inline;
+            }
+        }
+
+        .nav-links {
+            display: none;
+            gap: 2.5rem;
             align-items: center;
         }
+
+        @media (min-width: 768px) {
+            .nav-links {
+                display: flex;
+            }
+        }
+
         .nav-links a {
             text-decoration: none;
-            color: var(--text-main);
+            color: #4b5563;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-cta {
+            background: var(--dark);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            border: 2px solid var(--dark);
+        }
+
+        .nav-cta:hover {
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .mobile-menu-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--dark);
+            font-size: 1.5rem;
+            padding: 0.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .mobile-menu-btn {
+                display: none;
+            }
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 70px;
+            left: 0;
+            right: 0;
+            background: white;
+            border-bottom: 1px solid var(--gray-border);
+            padding: 1.5rem;
+            flex-direction: column;
+            gap: 1rem;
+            z-index: 49;
+            animation: slideDown 0.3s ease;
+        }
+
+        .mobile-menu.active {
+            display: flex;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .mobile-menu a {
+            text-decoration: none;
+            color: #4b5563;
+            font-weight: 600;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--gray-border);
+        }
+
+        .mobile-menu a:last-child {
+            border-bottom: none;
+        }
+
+        /* ========== MINI NAV (appears during What You'll Find) ========== */
+        #mini-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 45;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--gray-border);
+            padding: 1rem 1.5rem;
+            transform: translateY(-100%);
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            margin-top: 70px;
+        }
+
+        #mini-nav.visible {
+            transform: translateY(0);
+        }
+
+        .mini-nav-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .mini-nav-item {
+            text-decoration: none;
+            color: var(--dark);
             font-weight: 600;
             font-size: 0.9rem;
-            transition: color 0.2s;
-        }
-        .nav-links a:hover { color: var(--p); }
-        .nav-cta {
-            background: var(--p);
-            color: white;
-            padding: 0.6rem 1.2rem;
-            border-radius: 4px;
-            font-weight: 700;
-            text-transform: uppercase;
-            font-size: 0.8rem;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            background: transparent;
+            border: 1px solid transparent;
         }
 
-        /* ── HERO SECTION ── */
+        .mini-nav-item:hover {
+            background: var(--light-gray);
+            color: var(--primary);
+        }
+
+        /* ========== HERO SECTION (KEEP AS IS) ========== */
         .hero {
-            padding: 8rem 5vw 4rem;
-            text-align: center;
-            background: linear-gradient(180deg, #fff 0%, #f6efff 100%);
-            position: relative;
-        }
-        .hero-label {
-            color: var(--p);
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-size: 0.8rem;
-            margin-bottom: 1.5rem;
-            display: block;
-        }
-        .hero h1 {
-            font-size: clamp(2.5rem, 5vw, 4.5rem);
-            font-weight: 800;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-            color: var(--b);
-        }
-        .hero p {
-            font-size: 1.25rem;
-            color: var(--text-sub);
-            max-width: 700px;
-            margin: 0 auto 2.5rem;
-        }
-        .hero-btns {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-        }
-        .btn {
-            padding: 1rem 2rem;
-            border-radius: 4px;
-            font-weight: 700;
-            text-decoration: none;
-            font-size: 1rem;
-            transition: all 0.2s;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        .btn-primary { background: var(--p); color: white; border: 2px solid var(--p); }
-        .btn-primary:hover { background: #8a6de0; border-color: #8a6de0; }
-        .btn-secondary { background: white; color: var(--p); border: 2px solid var(--p); }
-        .btn-secondary:hover { background: #f6efff; }
-
-        /* ── LOGO CAROUSEL ── */
-        .carousel {
-            padding: 3rem 5vw;
-            background: white;
-            text-align: center;
-        }
-        .carousel-text {
-            font-size: 0.8rem;
-            font-weight: 700;
-            color: var(--text-sub);
-            text-transform: uppercase;
-            margin-bottom: 2rem;
-        }
-        .carousel-logos {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 4rem;
-            flex-wrap: wrap;
-            opacity: 0.6;
-        }
-        .carousel-logos i { font-size: 2rem; color: var(--b); }
-
-        /* ── CONTENT SECTIONS ── */
-        section {
-            padding: 6rem 5vw;
-        }
-        .section-grid {
-            max-width: 1100px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-        .section-content h2 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 1.5rem;
-            color: var(--b);
-        }
-        .section-content p {
-            font-size: 1.1rem;
-            color: var(--text-sub);
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
-        }
-        .section-image {
-            background: var(--n);
-            border-radius: 12px;
-            aspect-ratio: 16/10;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            padding-top: 120px;
+            padding-bottom: 60px;
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+            background: linear-gradient(135deg, #a488f4 0%, #8a6ef1 50%, #7b5fde 100%);
+            color: white;
             position: relative;
             overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
-        }
-        .section-image::after {
-            content: 'DFL';
-            font-weight: 900;
-            font-size: 5rem;
-            color: rgba(0,0,0,0.03);
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
         }
 
-        /* ── ROLES (LIST VIEW) ── */
-        .roles-section {
-            background: #f6f9fc;
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 400px;
+            height: 400px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transform: translate(100px, -100px);
         }
-        .roles-header {
-            text-align: center;
-            margin-bottom: 4rem;
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 300px;
+            height: 300px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            transform: translate(-100px, 100px);
         }
-        .roles-header h2 { font-size: 2.5rem; font-weight: 800; color: var(--b); }
-        .roles-list {
-            max-width: 900px;
+
+        .hero-container {
+            max-width: 1400px;
             margin: 0 auto;
+            width: 100%;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        @media (min-width: 768px) {
+            .hero-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .hero-text h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-text .tagline {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .hero-text .tagline::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100px;
+            height: 4px;
+            background: var(--secondary);
+            border-radius: 2px;
+        }
+
+        .hero-text .description {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 500px;
+        }
+
+        .hero-image {
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+
+        @media (min-width: 768px) {
+            .hero-image {
+                display: flex;
+            }
+        }
+
+        .hero-image img {
+            width: 100%;
+            max-width: 350px;
+            height: auto;
+        }
+
+        /* ========== SECTION STYLES ========== */
+        section {
+            padding: 4rem 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        @media (min-width: 768px) {
+            section {
+                padding: 6rem 2rem;
+            }
+        }
+
+        .section-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* ========== WHO WE ARE SECTION ========== */
+        .who-we-are {
+            background: white;
+        }
+
+        .who-we-are-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        @media (min-width: 1024px) {
+            .who-we-are-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 4rem;
+            }
+        }
+
+        .who-we-are h2 {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 900;
+            line-height: 1;
+            letter-spacing: -0.02em;
+            color: var(--dark);
+            margin-bottom: 2rem;
+        }
+
+        .who-we-are h2 .highlight {
+            color: var(--primary);
+        }
+
+        .who-we-are h2 .secondary {
+            color: var(--secondary);
+        }
+
+        .who-we-are-bar {
+            width: 80px;
+            height: 6px;
+            background: var(--dark);
+            border-radius: 3px;
+            margin-bottom: 2rem;
+        }
+
+        .who-we-are-text {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .who-we-are-text > div {
+            padding-left: 2rem;
+            border-left: 4px solid var(--primary);
+        }
+
+        .who-we-are-text h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dark);
+            line-height: 1.3;
+            margin-bottom: 1rem;
+        }
+
+        .who-we-are-text p {
+            font-size: 1rem;
+            color: #6b7280;
+            line-height: 1.7;
+        }
+
+        /* ========== WHAT YOU'LL FIND HEADER ========== */
+        .what-header {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 4rem 1.5rem;
+        }
+
+        .what-header h2 {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 900;
+            line-height: 1;
+            letter-spacing: -0.02em;
+        }
+
+        .what-header .highlight {
+            color: var(--secondary);
+        }
+
+        /* ========== WHAT YOU'LL FIND SECTIONS ========== */
+        .find-section {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            align-items: center;
+            padding: 4rem 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .find-section {
+                grid-template-columns: 1fr 1fr;
+                gap: 4rem;
+                padding: 6rem 2rem;
+            }
+        }
+
+        .find-section.alt {
+            grid-template-columns: 1fr;
+        }
+
+        @media (min-width: 768px) {
+            .find-section.alt {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .find-section.alt .find-image {
+                order: -1;
+            }
+        }
+
+        .find-section h3 {
+            font-size: clamp(2rem, 6vw, 4rem);
+            font-weight: 900;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            margin-bottom: 2rem;
+        }
+
+        .find-section h3 .highlight {
+            color: var(--primary);
+        }
+
+        .find-section h3 .secondary {
+            color: var(--secondary);
+        }
+
+        .find-text {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .find-text p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            font-weight: 500;
+        }
+
+        .find-text strong {
+            font-weight: 700;
+        }
+
+        .find-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .find-image img {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            transition: transform 0.5s ease;
+        }
+
+        .find-image:hover img {
+            transform: scale(1.05);
+        }
+
+        /* ========== SECTION BACKGROUNDS ========== */
+        .find-01 {
+            background: white;
+            color: var(--dark);
+        }
+
+        .find-02 {
+            background: var(--secondary);
+            color: var(--dark);
+        }
+
+        .find-03 {
+            background: var(--primary);
+            color: white;
+        }
+
+        .find-03 .find-text p {
+            color: rgba(255, 255, 255, 0.95);
+        }
+
+        .find-04 {
+            background: white;
+            color: var(--dark);
+        }
+
+        /* ========== FOUNDER SECTION ========== */
+        .founder-section {
+            background: white;
+            padding: 4rem 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .founder-section {
+                padding: 6rem 2rem;
+            }
+        }
+
+        .founder-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        @media (min-width: 768px) {
+            .founder-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 4rem;
+            }
+        }
+
+        .founder-image-wrapper {
+            position: relative;
+            display: flex;
+            justify-content: center;
+        }
+
+        .founder-image {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 400px;
+            border-radius: 2rem;
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .founder-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .founder-badge {
+            position: absolute;
+            bottom: -20px;
+            right: -20px;
+            width: 140px;
+            height: 140px;
+            background: var(--secondary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 3;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            border: 6px solid white;
+            transform: rotate(12deg);
+        }
+
+        .founder-badge span {
+            text-align: center;
+            font-weight: 900;
+            font-size: 1rem;
+            color: var(--dark);
+            line-height: 1.2;
+            text-transform: uppercase;
+        }
+
+        .founder-content {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .founder-content h2 {
+            font-size: clamp(2rem, 6vw, 3.5rem);
+            font-weight: 900;
+            color: var(--dark);
+            line-height: 1.1;
+        }
+
+        .founder-bar {
+            width: 60px;
+            height: 4px;
+            background: var(--secondary);
+            border-radius: 2px;
+        }
+
+        .founder-tagline {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+            font-style: italic;
+            line-height: 1.4;
+        }
+
+        .founder-text {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .founder-text p {
+            font-size: 1rem;
+            color: #6b7280;
+            line-height: 1.7;
+            font-weight: 500;
+        }
+
+        /* ========== OPPORTUNITIES SECTION ========== */
+        .opportunities-section {
+            background: white;
+            padding: 4rem 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .opportunities-section {
+                padding: 6rem 2rem;
+            }
+        }
+
+        .opportunities-header {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            margin-bottom: 4rem;
+            align-items: start;
+        }
+
+        @media (min-width: 768px) {
+            .opportunities-header {
+                grid-template-columns: 1fr 1fr;
+                gap: 4rem;
+            }
+        }
+
+        .opportunities-header h2 {
+            font-size: clamp(2rem, 6vw, 3.5rem);
+            font-weight: 900;
+            color: var(--dark);
+            line-height: 1.1;
+        }
+
+        .opportunities-header h2 .highlight {
+            color: var(--primary);
+        }
+
+        .opportunities-bar {
+            width: 60px;
+            height: 4px;
+            background: var(--secondary);
+            border-radius: 2px;
+            margin-bottom: 2rem;
+        }
+
+        .opportunities-description {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .opportunities-description p {
+            font-size: 1.1rem;
+            color: #9ca3af;
+            font-weight: 600;
+            line-height: 1.6;
+        }
+
+        .opportunities-label {
+            font-size: 0.9rem;
+            font-weight: 900;
+            color: var(--dark);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding-left: 2rem;
+            border-left: 4px solid var(--primary);
+        }
+
+        .carousel-wrapper {
+            overflow: hidden;
+            padding: 2rem 0;
+        }
+
+        .carousel {
+            display: flex;
+            gap: 2rem;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            padding-bottom: 1rem;
+        }
+
+        .carousel::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .carousel::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        .carousel::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 10px;
+        }
+
+        .carousel-item {
+            flex-shrink: 0;
+            width: 160px;
+            height: 160px;
+            background: white;
+            border: 2px solid var(--gray-border);
+            border-radius: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .carousel-item:hover {
+            border-color: var(--primary);
+            box-shadow: 0 20px 40px rgba(164, 136, 244, 0.15);
+            transform: translateY(-4px);
+        }
+
+        .carousel-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        /* ========== MISSION SECTION ========== */
+        .mission-section {
+            background: var(--secondary);
+            padding: 4rem 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        @media (min-width: 768px) {
+            .mission-section {
+                padding: 6rem 2rem;
+            }
+        }
+
+        .mission-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        @media (min-width: 1024px) {
+            .mission-grid {
+                grid-template-columns: 1.2fr 1fr;
+                gap: 4rem;
+            }
+        }
+
+        .mission-title {
+            font-size: clamp(2rem, 8vw, 4rem);
+            font-weight: 900;
+            line-height: 1;
+            letter-spacing: -0.02em;
+            color: var(--dark);
+        }
+
+        .mission-title .white {
+            color: white;
+        }
+
+        .mission-box {
+            background: white;
+            border-radius: 2rem;
+            padding: 2rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            transform: rotate(2deg);
+        }
+
+        .mission-box p {
+            font-size: 1.1rem;
+            color: var(--dark);
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .mission-box p strong {
+            font-weight: 700;
+        }
+
+        .mission-box p em {
+            color: var(--primary);
+            font-weight: 700;
+            font-style: italic;
+        }
+
+        .mission-values {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--gray-border);
+        }
+
+        .mission-value {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        .mission-value-dot {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 2px;
+        }
+
+        .mission-value:nth-child(1) .mission-value-dot {
+            background: var(--primary);
+        }
+
+        .mission-value:nth-child(2) .mission-value-dot {
+            background: var(--dark);
+        }
+
+        .mission-value:nth-child(3) .mission-value-dot {
+            background: var(--secondary);
+            border: 2px solid var(--dark);
+        }
+
+        .mission-value-text h4 {
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 0.3rem;
+            font-size: 1rem;
+        }
+
+        .mission-value-text p {
+            font-size: 0.95rem;
+            color: #6b7280;
+            margin: 0;
+        }
+
+        /* ========== FAQ SECTION ========== */
+        .faq-section {
+            background: white;
+            padding: 4rem 1.5rem;
+            border-top: 1px solid var(--gray-border);
+        }
+
+        @media (min-width: 768px) {
+            .faq-section {
+                padding: 6rem 2rem;
+            }
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+        }
+
+        @media (min-width: 768px) {
+            .faq-grid {
+                grid-template-columns: 1fr 1.5fr;
+                gap: 4rem;
+            }
+        }
+
+        .faq-header {
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+        }
+
+        .faq-header h2 {
+            font-size: clamp(1.5rem, 5vw, 2.5rem);
+            font-weight: 900;
+            color: var(--dark);
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        .faq-header p {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .faq-items {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid var(--gray-border);
+            padding: 1.5rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-question {
+            background: none;
+            border: none;
+            width: 100%;
+            text-align: left;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 0;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--dark);
+            transition: color 0.3s ease;
+        }
+
+        .faq-question:hover {
+            color: var(--primary);
+        }
+
+        .faq-question-text {
+            text-align: left;
+            line-height: 1.4;
+        }
+
+        .faq-toggle {
+            width: 32px;
+            height: 32px;
+            border: 2px solid var(--dark);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+            color: var(--dark);
+        }
+
+        .faq-item.active .faq-toggle {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: white;
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+            padding-top: 0;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+            padding-top: 1.5rem;
+        }
+
+        .faq-answer-text {
+            font-size: 0.95rem;
+            color: #6b7280;
+            line-height: 1.7;
+            font-weight: 500;
+        }
+
+        /* ========== CONNECT BAR ========== */
+        .connect-bar {
+            background: var(--secondary);
+            border-top: 4px solid var(--dark);
+            border-bottom: 4px solid var(--dark);
+            padding: 2rem 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .connect-bar {
+                padding: 2rem;
+            }
+        }
+
+        .connect-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+            text-align: center;
+        }
+
+        @media (min-width: 768px) {
+            .connect-container {
+                flex-direction: row;
+                justify-content: space-between;
+                text-align: left;
+            }
+        }
+
+        .connect-text {
+            color: var(--dark);
+            font-size: 1.5rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .connect-icons {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .connect-icons a {
+            color: var(--dark);
+            font-size: 2.5rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .connect-icons a:hover {
+            transform: scale(1.2);
+            color: var(--primary);
+        }
+
+        /* ========== FOOTER ========== */
+        footer {
+            background: linear-gradient(135deg, #a488f4 0%, #8a6ef1 50%, #7b5fde 100%);
+            color: white;
+            padding: 4rem 1.5rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        @media (min-width: 768px) {
+            footer {
+                padding: 6rem 2rem 2rem;
+            }
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 300px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transform: translate(100px, -100px);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-main {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 2rem;
+            padding: 3rem 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+        }
+
+        @media (min-width: 768px) {
+            .footer-main {
+                grid-template-columns: 1fr 1fr;
+                gap: 4rem;
+            }
+        }
+
+        .footer-text h4 {
+            font-size: 1.8rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+        }
+
+        .footer-text p {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 1rem;
+        }
+
+        .footer-text .highlight {
+            color: var(--secondary);
+            font-weight: 700;
+        }
+
+        .footer-form {
             display: flex;
             flex-direction: column;
             gap: 1rem;
         }
-        .role-item {
-            background: white;
-            padding: 1.5rem 2rem;
-            border-radius: 8px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            text-decoration: none;
-            color: var(--text-main);
-            transition: transform 0.2s, box-shadow 0.2s;
-            border: 1px solid rgba(0,0,0,0.05);
+
+        .footer-form input,
+        .footer-form textarea {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 1rem;
+            padding: 1rem;
+            color: white;
+            font-family: inherit;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
         }
-        .role-item:hover {
+
+        .footer-form input::placeholder,
+        .footer-form textarea::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .footer-form input:focus,
+        .footer-form textarea:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.15);
+            border-color: var(--secondary);
+        }
+
+        .footer-form button {
+            background: var(--secondary);
+            color: var(--dark);
+            border: none;
+            border-radius: 1rem;
+            padding: 1rem;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .footer-form button:hover {
+            background: white;
             transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-            border-color: var(--p);
         }
-        .role-info h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.2rem; }
-        .role-info p { font-size: 0.9rem; color: var(--text-sub); }
-        .role-arrow { color: var(--p); font-weight: 700; }
-
-        /* ── RULES ── */
-        .rules-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            max-width: 1100px;
-            margin: 4rem auto 0;
-        }
-        .rule-card {
-            padding: 2.5rem;
-            background: white;
-            border-radius: 12px;
-            border-top: 4px solid var(--p);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
-        }
-        .rule-card h3 { font-size: 1.4rem; margin-bottom: 1rem; color: var(--b); }
-        .rule-card p { color: var(--text-sub); font-size: 1rem; }
-
-        /* ── FOOTER ── */
-        footer {
-            background: var(--wh);
-            padding: 4rem 5vw 2rem;
-            border-top: 1px solid rgba(0,0,0,0.05);
-        }
-        .footer-grid {
-            max-width: 1100px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr;
-            gap: 4rem;
-        }
-        .footer-brand h2 { font-weight: 800; margin-bottom: 1rem; color: var(--b); }
-        .footer-brand p { color: var(--text-sub); margin-bottom: 2rem; }
-        .footer-links h4 { font-weight: 800; margin-bottom: 1.5rem; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; }
-        .footer-links ul { list-style: none; }
-        .footer-links li { margin-bottom: 0.8rem; }
-        .footer-links a { text-decoration: none; color: var(--text-sub); font-size: 0.9rem; transition: color 0.2s; }
-        .footer-links a:hover { color: var(--p); }
 
         .footer-bottom {
-            max-width: 1100px;
-            margin: 4rem auto 0;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(0,0,0,0.05);
             display: flex;
+            flex-direction: column;
             justify-content: space-between;
             align-items: center;
-            font-size: 0.8rem;
-            color: var(--text-sub);
+            gap: 1.5rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: center;
         }
-        .footer-bottom a { color: var(--p); text-decoration: none; }
 
-        /* ── FORM ── */
-        .contact-form {
-            background: #f6f9fc;
+        @media (min-width: 768px) {
+            .footer-bottom {
+                flex-direction: row;
+                text-align: left;
+            }
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .footer-logo img {
+            width: 40px;
+            height: 40px;
+            filter: brightness(0) invert(1);
+        }
+
+        .footer-logo span {
+            font-weight: 900;
+            font-size: 1rem;
+        }
+
+        .footer-bottom p {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* ========== MODAL ========== */
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 100;
+            background: rgba(30, 58, 138, 0.95);
+            backdrop-filter: blur(8px);
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 2rem;
             padding: 2rem;
-            border-radius: 8px;
-        }
-        .form-group { margin-bottom: 1rem; }
-        .form-group input, .form-group textarea {
+            max-width: 500px;
             width: 100%;
-            padding: 0.8rem;
-            border: 1px solid rgba(0,0,0,0.1);
-            border-radius: 4px;
-            font-family: inherit;
+            text-align: center;
+            animation: slideUp 0.3s ease;
         }
-        .form-btn {
-            width: 100%;
-            padding: 0.8rem;
-            background: var(--b);
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(164, 136, 244, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            color: var(--primary);
+            font-size: 1.8rem;
+        }
+
+        .modal-content h3 {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--dark);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .modal-content p {
+            font-size: 1rem;
+            color: #6b7280;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .modal-content button {
+            background: var(--dark);
             color: white;
             border: none;
-            border-radius: 4px;
+            border-radius: 1rem;
+            padding: 1rem 2rem;
             font-weight: 700;
+            font-size: 0.9rem;
             cursor: pointer;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            width: 100%;
         }
 
-        /* ── MOBILE ── */
-        @media (max-width: 768px) {
-            .section-grid { grid-template-columns: 1fr; }
-            .hero h1 { font-size: 2.5rem; }
-            .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
-            .nav-links { display: none; }
+        .modal-content button:hover {
+            background: var(--primary);
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 640px) {
+            section {
+                padding: 3rem 1rem;
+            }
+
+            .find-section {
+                padding: 3rem 1rem;
+            }
+
+            .founder-badge {
+                width: 100px;
+                height: 100px;
+                bottom: -15px;
+                right: -15px;
+            }
+
+            .founder-badge span {
+                font-size: 0.8rem;
+            }
+
+            .carousel-item {
+                width: 140px;
+                height: 140px;
+            }
+
+            .connect-icons {
+                gap: 1.5rem;
+            }
+
+            .connect-icons a {
+                font-size: 2rem;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Custom Cursor -->
+    <div class="custom-cursor"></div>
 
-    <nav>
-        <a href="#" class="logo">Dear Future <b>Luminary</b></a>
-        <div class="nav-links">
-            <a href="#story">Story</a>
-            <a href="#roles">Roles</a>
-            <a href="#rules">Rules</a>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">
+                <img src="client/public/images/dear.future.luminary.logo.svg.svg" alt="Logo">
+                <span>Dear Future Luminary</span>
+            </a>
+            <div class="nav-links">
+                <a href="#who-we-are">About</a>
+                <a href="#what-you-find">What You'll Find</a>
+                <a href="#mission">Mission</a>
+                <a href="#faq">FAQ</a>
+                <a href="#contact" class="nav-cta">Contact</a>
+            </div>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                <i data-lucide="menu" id="menu-icon"></i>
+            </button>
+        </div>
+        <div class="mobile-menu" id="mobile-menu">
+            <a href="#who-we-are">About</a>
+            <a href="#what-you-find">What You'll Find</a>
+            <a href="#mission">Mission</a>
+            <a href="#faq">FAQ</a>
             <a href="#contact">Contact</a>
-            <a href="#roles" class="nav-cta">Join Us</a>
         </div>
     </nav>
 
-    <header class="hero">
-        <span class="hero-label">We're Hiring</span>
-        <h1>All your people and creative <br>agents working together.</h1>
-        <p>We're building a <strong>youth-led creative movement</strong>. Slack connects your team. Dear Future Luminary multiplies what they can do.</p>
-        <div class="hero-btns">
-            <a href="#roles" class="btn btn-primary">Join The Team →</a>
-            <a href="#story" class="btn btn-secondary">Read The Story</a>
-        </div>
-    </header>
-
-    <div class="carousel">
-        <p class="carousel-text">Trusted by top teams and ambitious builders</p>
-        <div class="carousel-logos">
-            <i class="fab fa-google"></i>
-            <i class="fab fa-apple"></i>
-            <i class="fab fa-microsoft"></i>
-            <i class="fab fa-amazon"></i>
-            <i class="fab fa-spotify"></i>
-            <i class="fab fa-slack"></i>
+    <!-- Mini Nav (appears during What You'll Find) -->
+    <div id="mini-nav">
+        <div class="mini-nav-content">
+            <a href="#find-01" class="mini-nav-item">Personal Growth</a>
+            <a href="#find-02" class="mini-nav-item">Global Opportunities</a>
+            <a href="#find-03" class="mini-nav-item">Clear Roadmaps</a>
+            <a href="#find-04" class="mini-nav-item">Profile Building</a>
         </div>
     </div>
 
-    <section id="story">
-        <div class="section-grid">
-            <div class="section-content">
-                <span class="hero-label">The Story</span>
-                <h2>Reimagine what’s possible <br>with youth and creativity.</h2>
-                <p>This started as a <em>whisper</em> in a crowded room. A realization that the current systems aren't built for us. They want your <em>compliance</em>, we want your <em>chaos</em>.</p>
-                <p>We're not just looking for volunteers; we're looking for luminaries. This is not just volunteering. It's a movement.</p>
-            </div>
-            <div class="section-image"></div>
-        </div>
-    </section>
-
-    <section class="roles-section" id="roles">
-        <div class="roles-header">
-            <span class="hero-label">Opportunities</span>
-            <h2>Open Roles</h2>
-            <p>Pick a role that excites you. Or multiple. We'll figure it out together.</p>
-        </div>
-        <div class="roles-list">
-            <a href="https://tally.so/r/LZaYWj" target="_blank" class="role-item">
-                <div class="role-info">
-                    <h3>Creative Team</h3>
-                    <p>Visual identity, graphic design, and aesthetic direction.</p>
+    <!-- Hero Section (KEEP AS IS) -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Dear Future<br>Luminary</h1>
+                    <p class="tagline">For the future that's watching.</p>
+                    <div class="description">
+                        <p>Finding opportunities shouldn't feel like solving a mystery.</p>
+                        <p>Discover your direction. Build your path with clarity. Access real global opportunities.</p>
+                        <p>I'm here to help you find where you belong, understand your next step, and move forward with confidence. You're not alone on this journey.</p>
+                    </div>
                 </div>
-                <div class="role-arrow">Apply ↗</div>
-            </a>
-            <a href="https://tally.so/r/Xx8Mge" target="_blank" class="role-item">
-                <div class="role-info">
-                    <h3>Research Team</h3>
-                    <p>Deep dives into youth culture, trends, and data-driven insights.</p>
+                <div class="hero-image">
+                    <img src="client/public/images/dear.future.luminary.logo.svg.svg" alt="Dear Future Luminary">
                 </div>
-                <div class="role-arrow">Apply ↗</div>
-            </a>
-            <a href="https://tally.so/r/dW8DpD" target="_blank" class="role-item">
-                <div class="role-info">
-                    <h3>Content Creators</h3>
-                    <p>Storytelling, video production, and digital narrative building.</p>
-                </div>
-                <div class="role-arrow">Apply ↗</div>
-            </a>
-            <a href="https://tally.so/r/VLbMdN" target="_blank" class="role-item">
-                <div class="role-info">
-                    <h3>Web Development</h3>
-                    <p>Building the digital infrastructure of our universe.</p>
-                </div>
-                <div class="role-arrow">Apply ↗</div>
-            </a>
-            <a href="https://tally.so/r/rjJdpp" target="_blank" class="role-item">
-                <div class="role-info">
-                    <h3>Outreach & Partnerships</h3>
-                    <p>Connecting the movement with the rest of the world.</p>
-                </div>
-                <div class="role-arrow">Apply ↗</div>
-            </a>
-            <a href="https://tally.so/r/Zj1zgA" target="_blank" class="role-item">
-                <div class="role-info">
-                    <h3>Events & Workshops</h3>
-                    <p>Creating physical and digital moments of connection.</p>
-                </div>
-                <div class="role-arrow">Apply ↗</div>
-            </a>
-            <a href="https://tally.so/r/NpbJgN" target="_blank" class="role-item">
-                <div class="role-info">
-                    <h3>Marketing & Social Media</h3>
-                    <p>Amplifying the voice of the future.</p>
-                </div>
-                <div class="role-arrow">Apply ↗</div>
-            </a>
-        </div>
-    </section>
-
-    <section id="rules">
-        <div class="roles-header">
-            <span class="hero-label">Our Culture</span>
-            <h2>The Unwritten Rules</h2>
-        </div>
-        <div class="rules-grid">
-            <div class="rule-card">
-                <h3>01. Be Audacious</h3>
-                <p>We don't do "safe." If your idea doesn't scare you a little, it's probably not big enough.</p>
-            </div>
-            <div class="rule-card">
-                <h3>02. Stay Curious</h3>
-                <p>The moment you think you know everything is the moment you stop growing. Ask the "stupid" questions.</p>
-            </div>
-            <div class="rule-card">
-                <h3>03. Build Together</h3>
-                <p>This is a collective. We win as a team, we learn as a team. No egos allowed.</p>
             </div>
         </div>
     </section>
 
+    <!-- Who We Are Section -->
+    <section class="who-we-are" id="who-we-are">
+        <div class="section-container">
+            <div class="who-we-are-grid">
+                <div>
+                    <h2>Built by <span class="highlight">Youth,</span><br>for <span class="secondary">Youth.</span></h2>
+                    <div class="who-we-are-bar"></div>
+                </div>
+                <div class="who-we-are-text">
+                    <div>
+                        <h3>Not because it sounds nice on a poster.</h3>
+                        <p>Because I genuinely needed this website when I was younger.</p>
+                    </div>
+                    <div>
+                        <p>I spent years discovering opportunities completely by accident. A random Instagram post. A friend sharing a link. A deadline I almost missed. A program I found at 1 a.m. while scrolling through page seven of Google.</p>
+                    </div>
+                    <div>
+                        <p>Every opportunity opened another door. But finding them always felt harder than it should have been. So instead of keeping everything buried in screenshots, bookmarks, and notes I'd never look at again... I put it here.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What You'll Find Header -->
+    <section class="what-header">
+        <div class="section-container">
+            <h2>What You'll <br><span class="highlight">Find Here</span></h2>
+        </div>
+    </section>
+
+    <!-- What You'll Find Sections -->
+    <div id="what-you-find">
+        <!-- Section 01: Personal Growth -->
+        <section class="find-section find-01" id="find-01">
+            <div class="find-text">
+                <h3>Personal<br><span class="highlight">Growth</span></h3>
+                <p>Opportunities are great. But they're way more useful when you know how to communicate your ideas, lead a team, handle rejection, stay curious, and believe you're capable of more than you think.</p>
+                <p><strong>Nobody is born knowing how to do that. The good news? You can learn.</strong></p>
+            </div>
+            <div class="find-image">
+                <img src="client/public/images/summer program.svg" alt="Personal Growth">
+            </div>
+        </section>
+
+        <!-- Section 02: Global Opportunities -->
+        <section class="find-section find-02" id="find-02">
+            <div class="find-image">
+                <img src="client/public/images/Teams.svg" alt="Global Opportunities">
+            </div>
+            <div class="find-text">
+                <h3>Global<br>Opportunities</h3>
+                <p>The internet is full of incredible programs. The problem is that they're scattered everywhere.</p>
+                <p>One is hidden on a university website. Another is buried in someone's LinkedIn post. A third disappears before most students even hear about it.</p>
+                <p><strong>This section exists to make those opportunities easier to find—and harder to miss.</strong></p>
+            </div>
+        </section>
+
+        <!-- Section 03: Clear Roadmaps -->
+        <section class="find-section find-03" id="find-03">
+            <div class="find-text">
+                <h3>Clear<br><span class="secondary">Roadmaps</span></h3>
+                <p>One of the most frustrating feelings in the world is wanting to learn something and having no clue where to start.</p>
+                <p>Coding. Research. Medicine. Sustainability. Content creation. YouTube tells you one thing. Google tells you another. Everyone has an opinion.</p>
+                <p><strong>These roadmaps cut through the noise and give you an actual starting point.</strong></p>
+            </div>
+            <div class="find-image">
+                <img src="client/public/images/road map.svg" alt="Roadmaps">
+            </div>
+        </section>
+
+        <!-- Section 04: Profile Building -->
+        <section class="find-section find-04" id="find-04">
+            <div class="find-image">
+                <img src="client/public/images/Personal Profile.svg" alt="Profile Building">
+            </div>
+            <div class="find-text">
+                <h3>Profile<br><span class="highlight">Building</span></h3>
+                <p>At some point, you'll need to introduce yourself. On a CV. In an application. On LinkedIn. Maybe even in an interview.</p>
+                <p><strong>And somehow nobody teaches that in school. This section does.</strong></p>
+            </div>
+        </section>
+    </div>
+
+    <!-- Meet The Founder Section -->
+    <section class="founder-section">
+        <div class="section-container">
+            <div class="founder-grid">
+                <div class="founder-image-wrapper">
+                    <div class="founder-image">
+                        <img src="client/public/images/our-founder.png" alt="Malak Emad">
+                    </div>
+                    <div class="founder-badge">
+                        <span>The<br>Founder</span>
+                    </div>
+                </div>
+                <div class="founder-content">
+                    <h2>Hi, I'm Malak.</h2>
+                    <div class="founder-bar"></div>
+                    <p class="founder-tagline">And Dear Future Luminary started with a question I couldn't stop asking:</p>
+                    <div class="founder-text">
+                        <p><strong>"What if finding opportunities was a little less confusing?"</strong></p>
+                        <p>Over the years, I joined programs, met inspiring people, traveled virtually across the world, learned new skills, and discovered paths I never knew existed. Not because I had some special advantage. Mostly because I kept searching. A lot.</p>
+                        <p>And eventually I realized that thousands of students were searching for the exact same things. So I built the resource I wish I'd had from the beginning.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Opportunities Section -->
+    <section class="opportunities-section">
+        <div class="section-container">
+            <div class="opportunities-header">
+                <div>
+                    <h2>Opportunities <br><span class="highlight">Worth Knowing</span></h2>
+                    <div class="opportunities-bar"></div>
+                </div>
+                <div class="opportunities-description">
+                    <p>Programs that challenged me, connected me with people from different countries, introduced me to new ideas, and completely changed how I saw my future.</p>
+                    <p class="opportunities-label">Proof It's Possible</p>
+                </div>
+            </div>
+            <div class="carousel-wrapper">
+                <div class="carousel" id="programs-carousel">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="mission-section" id="mission">
+        <div class="section-container">
+            <div class="mission-grid">
+                <div>
+                    <h2 class="mission-title">Talent is <br>Everywhere. <br><span class="white">Access is not.</span></h2>
+                </div>
+                <div class="mission-box">
+                    <p>Dear Future Luminary was born from one student asking:</p>
+                    <p><em>"What if finding opportunities was a little less confusing?"</em></p>
+                    <div class="mission-values">
+                        <div class="mission-value">
+                            <div class="mission-value-dot"></div>
+                            <div class="mission-value-text">
+                                <h4>Authenticity</h4>
+                                <p>Built by a student who knows how this feels.</p>
+                            </div>
+                        </div>
+                        <div class="mission-value">
+                            <div class="mission-value-dot"></div>
+                            <div class="mission-value-text">
+                                <h4>Clarity</h4>
+                                <p>Converting confusion into simple steps.</p>
+                            </div>
+                        </div>
+                        <div class="mission-value">
+                            <div class="mission-value-dot"></div>
+                            <div class="mission-value-text">
+                                <h4>Impact</h4>
+                                <p>Realizing you're capable of more.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section" id="faq">
+        <div class="section-container">
+            <div class="faq-grid">
+                <div class="faq-header">
+                    <h2>Questions You Might<br>Be Too Shy to Ask</h2>
+                    <p>You Ask. We Yap, Respectfully.</p>
+                </div>
+                <div class="faq-items" id="faq-items">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Connect Bar -->
+    <div class="connect-bar">
+        <div class="connect-container">
+            <span class="connect-text">Connect With Us</span>
+            <div class="connect-icons">
+                <a href="https://facebook.com/dear.future.luminary" target="_blank" rel="noopener noreferrer" title="Facebook">
+                    <i class="fab fa-facebook"></i>
+                </a>
+                <a href="https://youtube.com/@malak_luminary" target="_blank" rel="noopener noreferrer" title="YouTube">
+                    <i class="fab fa-youtube"></i>
+                </a>
+                <a href="https://instagram.com/dear.future.luminary" target="_blank" rel="noopener noreferrer" title="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="mailto:dear.future.luminary@gmail.com" title="Email">
+                    <i class="fas fa-envelope"></i>
+                </a>
+                <a href="#" onclick="toggleModal('comingSoonModal', event)" title="More">
+                    <i class="fas fa-plus"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
     <footer id="contact">
-        <div class="footer-grid">
-            <div class="footer-brand">
-                <h2>Dear Future <span style="color: var(--p)">Luminary</span></h2>
-                <p>"For the future that's watching."</p>
-                <div style="display: flex; gap: 1rem; font-size: 1.2rem; color: var(--b);">
-                    <a href="https://www.instagram.com/dear.future.luminary" target="_blank"><i class="fab fa-instagram"></i></a>
-                    <a href="https://www.youtube.com/@malak_luminary" target="_blank"><i class="fab fa-youtube"></i></a>
-                    <a href="mailto:contact@dearfutureluminary.com"><i class="fas fa-envelope"></i></a>
+        <div class="footer-content">
+            <div class="footer-main">
+                <div class="footer-text">
+                    <h4>Let's Talk.</h4>
+                    <p>Have a question, an idea, or just want to say hi? I'm all ears.</p>
+                    <p><span class="highlight">Always checking my inbox</span></p>
                 </div>
-            </div>
-            <div class="footer-links">
-                <h4>Movement</h4>
-                <ul>
-                    <li><a href="#story">Our Story</a></li>
-                    <li><a href="#roles">Open Roles</a></li>
-                    <li><a href="#rules">Culture</a></li>
-                    <li><a href="https://tally.so/r/Y5JMyz" target="_blank">Support Us</a></li>
-                </ul>
-            </div>
-            <div class="contact-form">
-                <h4>Get In Touch</h4>
-                <form action="https://formspree.io/f/xqaqankn" method="POST">
-                    <div class="form-group"><input type="text" name="name" placeholder="Your name" required></div>
-                    <div class="form-group"><input type="email" name="email" placeholder="Your email" required></div>
-                    <div class="form-group"><textarea name="message" placeholder="Your message" rows="3" required></textarea></div>
-                    <button type="submit" class="form-btn">Send Message</button>
+                <form class="footer-form" onsubmit="handleFooterSubmit(event)">
+                    <input type="text" placeholder="Your Name" required>
+                    <input type="email" placeholder="Your Email" required>
+                    <textarea placeholder="Your Message" rows="4" required></textarea>
+                    <button type="submit">Send Message</button>
                 </form>
             </div>
-        </div>
-        <div class="footer-bottom">
-            <p>© 2025 Dear Future Luminary. All rights reserved.</p>
-            <p>Developed by <a href="https://malakemad2007.github.io/My-portfolio/" target="_blank">Malak Emad</a></p>
+            <div class="footer-bottom">
+                <div class="footer-logo">
+                    <img src="client/public/images/dear.future.luminary.logo.svg.svg" alt="Logo">
+                    <span>Dear Future Luminary</span>
+                </div>
+                <p>© 2026 Dear Future Luminary. All rights reserved.</p>
+                <p>Supporting SDGs: 4, 8, 10, 17</p>
+            </div>
         </div>
     </footer>
 
+    <!-- Coming Soon Modal -->
+    <div class="modal" id="comingSoonModal">
+        <div class="modal-content">
+            <div class="modal-icon">
+                <i data-lucide="rocket"></i>
+            </div>
+            <h3>Something Great<br>is Coming</h3>
+            <p>I'm currently building this part. It'll be worth the wait.</p>
+            <button onclick="toggleModal('comingSoonModal')">Got it!</button>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // FAQ Data
+        const faqData = [
+            {
+                question: "What even is Dear Future Luminary?",
+                answer: "Dear Future Luminary is your corner of the internet for figuring things out—your next opportunity, your passions, your personal growth, and honestly… yourself.<br><br>We help students discover scholarships, summer programs, teams, skills, and paths they might not even know exist yet.<br><br>Think of it as a guide, a resource hub, and a big-sis energy boost all in one."
+            },
+            {
+                question: "Who is this for?",
+                answer: "High school students. Early college students. Dreamers. Overthinkers. Future founders. People who feel behind. People who want more.<br><br>Basically… if you're trying to grow, build your future, or find your spark—you belong here."
+            },
+            {
+                question: "Is this really free?",
+                answer: "Yep. Actually free.<br><br>No hidden fees. No 'pay to unlock the good stuff.' No weird catch.<br><br>Access should never be the thing holding someone back."
+            },
+            {
+                question: "I feel lost. Where do I even start?",
+                answer: "Honestly? That's exactly why this exists.<br><br>Start anywhere that feels exciting: opportunities, personal growth, roadmaps, profile building… there's no perfect order.<br><br>You do not need to have your life figured out before beginning."
+            },
+            {
+                question: "I'm not extraordinary enough for these opportunities.",
+                answer: "Respectfully… says who?<br><br>You do not need to be 'the perfect student' to deserve good opportunities.<br><br>You need curiosity, effort, and the courage to try.<br><br>Please don't reject yourself before the application even can."
+            },
+            {
+                question: "There's too much information. I'm overwhelmed.",
+                answer: "Same.<br><br>That's why we curate everything—to save you from ten hours of chaotic searching and fifteen open tabs.<br><br>Take one small step. One application. One resource. One better day. That's enough."
+            },
+            {
+                question: "Can I trust these opportunities?",
+                answer: "We do our best to carefully curate and share legitimate opportunities and resources.<br><br>Still—always read official websites, double-check deadlines, and do your own final review.<br><br>Smart luminaries verify."
+            },
+            {
+                question: "Can I suggest opportunities or resources?",
+                answer: "Please do.<br><br>If you've found something amazing, send it our way. This space grows stronger when students help students."
+            },
+            {
+                question: "Can I work with Dear Future Luminary?",
+                answer: "Absolutely!<br><br>We love meeting passionate students, collaborators, mentors, and organizations who believe in helping young people grow.<br><br>Reach out through the form below. Good things start with messages."
+            },
+            {
+                question: "Who's behind all this?",
+                answer: "A student who knows how confusing all of this can feel.<br><br>Someone who spent way too much time figuring things out the hard way—and decided to make it easier for others.<br><br>Built with care. Built with purpose. Built for you."
+            },
+            {
+                question: "What does 'Luminary' mean here?",
+                answer: "Someone who shines—and helps others shine too.<br><br>Not because they have everything figured out. Not because they're perfect.<br><br>But because they keep learning, growing, and choosing to light the way.<br><br>That can be you, too."
+            },
+            {
+                question: "Still wondering something?",
+                answer: "Ask us through the form below. Seriously. No question is too small, too random, or too 'I feel silly asking this.' That's what we're here for."
+            }
+        ];
+
+        // Render FAQ
+        function renderFAQ() {
+            const container = document.getElementById('faq-items');
+            if (!container) return;
+
+            container.innerHTML = faqData.map((item, index) => `
+                <div class="faq-item" data-index="${index}">
+                    <button class="faq-question" onclick="toggleFAQ(${index})">
+                        <span class="faq-question-text">${item.question}</span>
+                        <div class="faq-toggle">
+                            <i data-lucide="plus" style="width: 16px; height: 16px;"></i>
+                        </div>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-text">${item.answer}</div>
+                    </div>
+                </div>
+            `).join('');
+            lucide.createIcons();
+        }
+
+        // Toggle FAQ
+        function toggleFAQ(index) {
+            const items = document.querySelectorAll('.faq-item');
+            items.forEach((item, i) => {
+                if (i !== index) {
+                    item.classList.remove('active');
+                }
+            });
+            items[index].classList.toggle('active');
+        }
+
+        // Programs Data
+        const programsData = [
+            { name: 'Scholar', logo: 'client/public/images/logos/afs.png' },
+            { name: 'Intern & Project Manager', logo: 'client/public/images/kode with klossy.png' },
+            { name: 'Scholar', logo: 'client/public/images/logos/stanford_code_in_place.png' },
+            { name: 'Reporter', logo: 'client/public/images/logos/unicef.png' },
+            { name: 'Mentor', logo: 'client/public/images/logos/soliya.png' },
+            { name: 'Pre-Finalist', logo: 'client/public/images/logos/nasa_space_apps.png' },
+            { name: 'Youth Advocate', logo: 'client/public/images/ioy-logo.svg' },
+            { name: 'Gold medalist 23', logo: 'client/public/images/logos/climate_olympiad.png' },
+            { name: 'Ambassador', logo: 'client/public/images/OIP.webp' },
+            { name: 'Girls Who Code', logo: 'client/public/images/logos/girls_who_code.png' },
+            { name: 'Researcher', logo: 'client/public/images/NYAS-Swirl-Featured-Image.png' },
+            { name: 'Trainee', logo: 'client/public/images/images.png' },
+            { name: 'Founder & CEO', logo: 'client/public/images/images.png' }
+        ];
+
+        // Render Programs Carousel
+        function renderProgramsCarousel() {
+            const carousel = document.getElementById('programs-carousel');
+            if (!carousel) return;
+
+            const extendedData = [...programsData, ...programsData, ...programsData];
+            carousel.innerHTML = extendedData.map(program => `
+                <div class="carousel-item" title="${program.name}">
+                    <img src="${program.logo}" alt="${program.name}">
+                </div>
+            `).join('');
+        }
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('active');
+        }
+
+        // Modal Toggle
+        function toggleModal(modalId, event) {
+            if (event) event.preventDefault();
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.toggle('active');
+            }
+        }
+
+        // Handle Footer Submit
+        function handleFooterSubmit(e) {
+            e.preventDefault();
+            alert('Thank you for your message! We will get back to you soon.');
+            e.target.reset();
+        }
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            const miniNav = document.getElementById('mini-nav');
+            const whatYouFindSection = document.getElementById('what-you-find');
+
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+
+            // Show mini-nav when in What You'll Find section
+            if (whatYouFindSection) {
+                const rect = whatYouFindSection.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    miniNav.classList.add('visible');
+                } else {
+                    miniNav.classList.remove('visible');
+                }
+            }
+        });
+
+        // Custom Cursor
+        const cursor = document.querySelector('.custom-cursor');
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        // Close mobile menu on link click
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('mobile-menu').classList.remove('active');
+            });
+        });
+
+        // Close modal on outside click
+        document.querySelectorAll('.modal').forEach(modal => {
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.classList.remove('active');
+                }
+            });
+        });
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            renderFAQ();
+            renderProgramsCarousel();
+            lucide.createIcons();
+        });
+    </script>
 </body>
 </html>
